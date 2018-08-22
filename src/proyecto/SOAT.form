@@ -66,7 +66,7 @@
                           <EmptySpace min="74" pref="74" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButton6" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="dateChooserCombo4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -79,7 +79,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboBox1" alignment="0" pref="175" max="32767" attributes="0"/>
-                              <Component id="dateChooserCombo3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -115,24 +115,26 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dateChooserCombo3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="dateChooserCombo1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <Component id="dateChooserCombo4" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateChooserCombo2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -276,9 +278,9 @@
             <Property name="text" type="java.lang.String" value="Cargar"/>
           </Properties>
         </Component>
-        <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo3">
+        <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo1">
         </Component>
-        <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo4">
+        <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo2">
         </Component>
       </SubComponents>
     </Container>
