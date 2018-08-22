@@ -15,7 +15,8 @@ public class Lanzador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+         InicioSesion miVentana = new InicioSesion();
+        miVentana.setVisible(true);
     }
     
 }
