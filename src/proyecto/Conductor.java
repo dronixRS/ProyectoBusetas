@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +25,7 @@ public class Conductor extends javax.swing.JFrame {
      */
     private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
-    String rutaFoto, fecha, ident, nombre, apellido, celular, direccion, genero = "",correo,clave;
+    String rutaFoto, ident, nombre, apellido, celular, direccion, correo, catLin, vigLin, ciuLin, restLin, imgLin;
     
 //    ArrayList<FuncionarioVO> datosFuncionario;
 //    FuncionarioVO transFuncionario;
@@ -138,6 +139,11 @@ public class Conductor extends javax.swing.JFrame {
         });
 
         jBGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Desktop\\SENA\\img\\guardar.png")); // NOI18N
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBEditar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Desktop\\SENA\\img\\editar.png")); // NOI18N
 
@@ -350,9 +356,63 @@ public class Conductor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        // TODO add your handling code here:
+        activarCajas();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+if(guardarEditar==false){
+        
+        if (guardarDatos() == true) {
+            JOptionPane.showMessageDialog(null,
+                    "Guardado con exito...");
+            cargarTabla();
+            limpiarCajas();
+            bloquearCajas();
+            genero = "";
+            posicionUsuario=-1;
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Error de datos");
+        }
+        
+       }else{
+           
+           if(modificarDatos()==true){
+               JOptionPane.showMessageDialog(null,
+                    "Modificado con exito...");
+            limpiarCajas();
+            bloquearCajas();
+            
+           }else {
+            JOptionPane.showMessageDialog(null,
+                    "Error de datos");
+        }
+       }    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    public boolean guardarDatos(){
+         if (validarCajas() == true) {
+            ident = jTFIdentificacion.getText();
+            nombre = jTFNombre.getText();
+            apellido = jTFApellido.getText();
+            celular = jTFCelular.getText();
+            correo = jTFCorreo.getText();
+            direccion = jTFDireccion.getText();
+            );
+
+            transFuncionario = new FuncionarioVO(ident,
+                    nombre, apellido, celular,correo, direccion,
+                    genero, fechaNacimiento, nivel,rutaFoto,clave);
+            datosFuncionario.add(transFuncionario);
+            //se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
+            BDFuncionario.ingresarFuncionario(transFuncionario);
+            
+            return true;
+        } else {
+            return false;
+        }
+    
+    }
+    
     public void activarCajas(){
         
          jTFIdent.setEnabled(true);
