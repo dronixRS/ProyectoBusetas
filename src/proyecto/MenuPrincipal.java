@@ -33,14 +33,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMIFuncionario = new javax.swing.JMenuItem();
+        jMIAseguradora = new javax.swing.JMenuItem();
+        jMIEstudiante = new javax.swing.JMenuItem();
+        jMIConductor = new javax.swing.JMenuItem();
+        jMIAsistente = new javax.swing.JMenuItem();
+        jMIVehiculo = new javax.swing.JMenuItem();
+        jMRuta = new javax.swing.JMenu();
+        jMConsulta = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
@@ -66,46 +66,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Registros");
 
-        jMenuItem1.setText("Ingreso Funcionario");
-        jMenu1.add(jMenuItem1);
+        jMIFuncionario.setText("Ingreso Funcionario");
+        jMenu1.add(jMIFuncionario);
 
-        jMenuItem2.setText("Ingreso Aseguradora");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMIAseguradora.setText("Ingreso Aseguradora");
+        jMIAseguradora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMIAseguradoraActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jMIAseguradora);
 
-        jMenuItem3.setText("Ingreso Estudiante");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMIEstudiante.setText("Ingreso Estudiante");
+        jMIEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMIEstudianteActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(jMIEstudiante);
 
-        jMenuItem4.setText("Ingreso Conductor");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Ingreso Asistente");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMIConductor.setText("Ingreso Conductor");
+        jMIConductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMIConductorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(jMIConductor);
 
-        jMenuItem6.setText("Ingreso Vehiculo");
-        jMenu1.add(jMenuItem6);
+        jMIAsistente.setText("Ingreso Asistente");
+        jMIAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIAsistenteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIAsistente);
+
+        jMIVehiculo.setText("Ingreso Vehiculo");
+        jMenu1.add(jMIVehiculo);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Ruta");
-        jMenuBar1.add(jMenu2);
+        jMRuta.setText("Ruta");
+        jMenuBar1.add(jMRuta);
 
-        jMenu5.setText("Consulta");
-        jMenuBar1.add(jMenu5);
+        jMConsulta.setText("Consulta");
+        jMenuBar1.add(jMConsulta);
 
         jMenu6.setText("Ayuda");
         jMenuBar1.add(jMenu6);
@@ -126,17 +131,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMIAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAseguradoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMIAseguradoraActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMIEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEstudianteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMIEstudianteActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMIAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAsistenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMIAsistenteActionPerformed
+
+    private void jMIConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConductorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMIConductorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,19 +184,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JMenu jMConsulta;
+    private javax.swing.JMenuItem jMIAseguradora;
+    private javax.swing.JMenuItem jMIAsistente;
+    private javax.swing.JMenuItem jMIConductor;
+    private javax.swing.JMenuItem jMIEstudiante;
+    private javax.swing.JMenuItem jMIFuncionario;
+    private javax.swing.JMenuItem jMIVehiculo;
+    private javax.swing.JMenu jMRuta;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
