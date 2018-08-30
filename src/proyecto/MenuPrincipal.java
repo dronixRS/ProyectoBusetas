@@ -67,6 +67,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Registros");
 
         jMIFuncionario.setText("Ingreso Funcionario");
+        jMIFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIFuncionarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMIFuncionario);
 
         jMIAseguradora.setText("Ingreso Aseguradora");
@@ -144,8 +149,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAsistenteActionPerformed
 
     private void jMIConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConductorActionPerformed
-        // TODO add your handling code here:
+        Conductor miUsuario = new Conductor();
+        miUsuario.setVisible(true);
     }//GEN-LAST:event_jMIConductorActionPerformed
+
+    private void jMIFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFuncionarioActionPerformed
+       
+    }//GEN-LAST:event_jMIFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
