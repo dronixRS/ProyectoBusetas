@@ -399,9 +399,8 @@ if(guardarEditar==false){
             direccion = jTFDireccion.getText();
             );
 
-            transFuncionario = new FuncionarioVO(ident,
-                    nombre, apellido, celular,correo, direccion,
-                    genero, fechaNacimiento, nivel,rutaFoto,clave);
+            transFuncionario = new FuncionarioVO(ident, nombre, apellido, rutaFoto, celular, direccion,
+                    correo, catLin, vigLin, ciuLin, restLin, imgLin);
             datosFuncionario.add(transFuncionario);
             //se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDFuncionario.ingresarFuncionario(transFuncionario);
