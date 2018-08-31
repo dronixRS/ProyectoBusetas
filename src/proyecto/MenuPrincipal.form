@@ -45,53 +45,59 @@
             <Property name="text" type="java.lang.String" value="Registros"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIFuncionario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Funcionario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIFuncionarioActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIAseguradora">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Aseguradora"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIAseguradoraActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIEstudiante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Estudiante"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIEstudianteActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIConductor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Conductor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIConductorActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIAsistente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Asistente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIAsistenteActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="jMIVehiculo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso Vehiculo"/>
               </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMRuta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ruta"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="jMConsulta">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consulta"/>
           </Properties>
