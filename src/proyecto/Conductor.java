@@ -488,7 +488,8 @@ if(guardarEditar==false){
             direccion = jTFDireccion.getText();
             catLin= (String)(jCBCatLicen.getSelectedItem());
             vigLin1=dateChooserCombo1.getSelectedDate();
-            vigLin=vigLin1.get(Calendar.DATE+Calendar.MONTH+Calendar.YEAR);
+            vigLin=vigLin1.get(Calendar.DATE);
+             System.out.println(vigLin);
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
             
