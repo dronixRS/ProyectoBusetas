@@ -5,43 +5,56 @@
  */
 package proyecto;
 
+import controlador.ConductorDAO;
+import controlador.Conexion;
 import controlador.FuncionarioDAO;
 import java.awt.Color;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import modelo.ConductorVO;
 
 /**
  *
  * @author Usuario
  */
 public class Conductor extends javax.swing.JFrame {
-
+private Connection conexion;
+    private Conexion conector;
     /**
      * Creates new form Conductor
      */
     private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
-    String rutaFoto, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin;
+    String rutaFoto,rutaFotoLinc, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin;
     String catLin, ciuLin;
+    Date vigLin;
     Calendar vigLin1;
-    int vigLin;
+    
+    ArrayList<ConductorVO> datosFuncionario;
+    ConductorVO transFuncionario;
     
 //    ArrayList<FuncionarioVO> datosFuncionario;
 //    FuncionarioVO transFuncionario;
     DefaultTableModel modelo;
     int nivel,posicionUsuario = -1;
     boolean guardarEditar=false;
-    FuncionarioDAO BDFuncionario;
+    ConductorDAO BDConductor;
     ArrayList<String> datosFuncionarioTabla;
+    String fecha;
     
     public Conductor() {
         initComponents();
@@ -50,7 +63,7 @@ public class Conductor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         bloquearCajas();
        
-        BDFuncionario=new FuncionarioDAO();
+        BDConductor=new ConductorDAO();
         
 //        datosFuncionario=new ArrayList<FuncionarioVO>();
         datosFuncionarioTabla=new ArrayList<String>();
@@ -115,6 +128,7 @@ public class Conductor extends javax.swing.JFrame {
         jCBCiudadLicen = new javax.swing.JComboBox<>();
         jBImgLicen = new javax.swing.JButton();
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        jBImgLicen1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,7 +218,15 @@ public class Conductor extends javax.swing.JFrame {
         jCBCiudadLicen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Armenia", "Bogota", "Cali", "Medellin", "Barranquilla", "Pasto" }));
 
         jBImgLicen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jBImgLicen.setText("Cargar/Ver");
+        jBImgLicen.setText("Cargar");
+        jBImgLicen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImgLicenActionPerformed(evt);
+            }
+        });
+
+        jBImgLicen1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jBImgLicen1.setText("Ver");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -269,7 +291,9 @@ public class Conductor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel111)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBImgLicen)))
+                        .addComponent(jBImgLicen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBImgLicen1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +355,8 @@ public class Conductor extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel111)
-                                    .addComponent(jBImgLicen))
+                                    .addComponent(jBImgLicen)
+                                    .addComponent(jBImgLicen1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,8 +440,8 @@ if(guardarEditar==false){
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
             
-//            transFuncionario = new FuncionarioVO(ident,nombre, apellido, celular,correo, direccion,genero, fechaNacimiento, rutaFoto);
-//            datosFuncionario.set(posicionUsuario,transFuncionario);
+            transFuncionario = new ConductorVO(ident, nombre, apellido,  celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
+            datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
             
             for (int i = jTConduc.getRowCount()-1; i >=0; i--) {
@@ -447,6 +472,10 @@ if(guardarEditar==false){
          jLFoto.setIcon(cargarFoto());
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jBImgLicenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImgLicenActionPerformed
+         cargarFotoLicencia();
+    }//GEN-LAST:event_jBImgLicenActionPerformed
+
      public void cargarTabla() {
         String[] datos = new String[9];
         datos[0] = ident;
@@ -476,6 +505,19 @@ if(guardarEditar==false){
         jTFRestLicenCond.setText("");
     }
     
+       public void obtenerVigLin(){
+           
+           int dia, mes, anio;
+           
+           
+           vigLin1=dateChooserCombo1.getSelectedDate();
+            dia=vigLin1.get(Calendar.DAY_OF_MONTH);
+            mes=vigLin1.get(Calendar.MONTH);
+            anio=vigLin1.get(Calendar.YEAR);
+            fecha= dia+"/"+(mes+1)+"/"+anio;
+            
+       }
+       
     public boolean guardarDatos(){
          if (validarCajas() == true) {
             ident = jTFIdent.getText();
@@ -485,20 +527,18 @@ if(guardarEditar==false){
             correo = jTFCorreo.getText();
             direccion = jTFDireccion.getText();
             catLin= (String)(jCBCatLicen.getSelectedItem());
+            obtenerVigLin();
             vigLin1=dateChooserCombo1.getSelectedDate();
-            vigLin=vigLin1.get(Calendar.DATE);
-             System.out.println(vigLin);
+            vigLin=vigLin1.getTime();
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
             
             
-//
-//            transFuncionario = new FuncionarioVO(ident, nombre, apellido, rutaFoto, celular, direccion,
-//                    correo, catLin, vigLin, ciuLin, restLin, imgLin);
-//            datosFuncionario.add(transFuncionario);
-            //se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
-//            BDFuncionario.ingresarFuncionario(transFuncionario);
-            
+
+            transFuncionario = new ConductorVO(ident, nombre, apellido, celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
+            datosFuncionario.add(transFuncionario);
+//            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
+            BDConductor.ingresarConductor(transFuncionario);
             return true;
         } else {
             return false;
@@ -533,7 +573,7 @@ if(guardarEditar==false){
             return false;
         }else if (jTFRestLicenCond.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,
-                    "Ingresar celular");
+                    "Ingresar Restriccion de Licencia");
             return false;
         }else {
             return true;
@@ -645,6 +685,35 @@ if(guardarEditar==false){
         }
         return null;
     }
+    public ImageIcon cargarFotoLicencia() {
+        //crea un objeto filechooser
+        JFileChooser dlg = new JFileChooser();
+        //del objeto creado vamos a llamar el metodo setFileFilter
+        dlg.setFileFilter(filter);
+        //abrimos la ventana de dialogo para escoger imagenes
+        int opcion = dlg.showOpenDialog(this);
+        //si hacemos clic en boton abrir
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+            //obtener el nombre del archivo que hemos seleccionado
+            String fil = dlg.getSelectedFile().getPath();
+            //obtener la direccion donde se guarda la imagen
+            String file = dlg.getSelectedFile().toString();
+            //modiicamos la imagen~~~~~~~~
+            ImageIcon icon = new ImageIcon(fil);
+            //extrae la imagen del icono
+            Image img = icon.getImage();
+            //cambiando el tamaño a la imagen
+            Image newImg = img.getScaledInstance(107, 154,
+                    java.awt.Image.SCALE_SMOOTH);
+            //se genera un imagenIcon con la nueva imagen
+            ImageIcon newIcon = new ImageIcon(newImg);
+            //rutaImagen=file;
+            rutaFotoLinc = file;
+            return newIcon;
+        }
+        return null;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
@@ -653,6 +722,7 @@ if(guardarEditar==false){
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBImgLicen;
+    private javax.swing.JButton jBImgLicen1;
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
