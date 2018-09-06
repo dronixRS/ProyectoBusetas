@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,7 +40,7 @@ private Connection conexion;
      */
     private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
-    String rutaFoto,rutaFotoLinc, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin;
+    String rutaFoto,rutaFotoLinc, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin, fechaDC;
     String catLin, ciuLin;
     Date vigLin;
     Calendar vigLin1;
@@ -167,10 +168,25 @@ private Connection conexion;
         });
 
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditarActionPerformed(evt);
+            }
+        });
 
         jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jTConduc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -476,6 +492,148 @@ if(guardarEditar==false){
          cargarFotoLicencia();
     }//GEN-LAST:event_jBImgLicenActionPerformed
 
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        try {
+            String buscaIdent = JOptionPane.showInputDialog(
+                    "Ingresar Identificación para editar");
+            buscarUsuarioEditar(buscaIdent);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        try {
+            String buscaIdent = JOptionPane.showInputDialog("Ingresar identificacion para eliminar");
+            //se llama el metodo buscarUsuarioEditar y se envia la variable buscaident la cual posee la identificacion
+            buscarUsuarioElm(buscaIdent);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        try {
+    String buscaIdent = JOptionPane.showInputDialog(
+       "Ingresar Identificación para editar");
+       buscarUsuario(buscaIdent);
+        } catch (Exception e) {
+         System.err.println(e);
+        }
+    }//GEN-LAST:event_jBBuscarActionPerformed
+    
+    public void buscarUsuario(String busUsu) {
+        boolean verificarUsu = false;
+        if (datosFuncionario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, 
+                    "No hay Usuarios Registrados");
+        } else {
+            for (int i = 0; i < datosFuncionario.size(); i++) {
+
+                if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
+                    verificarUsu = true;
+                    JOptionPane.showMessageDialog(null,
+                            "Información de Usuario:\nIdentificación: "
+                            +datosFuncionario.get(i).getIdentificacion()+"\nNombre: "
+                            +datosFuncionario.get(i).getNombre()+"\nApellido: "
+                            +datosFuncionario.get(i).getApellido()+"\nCelular: "
+                            +datosFuncionario.get(i).getCelular()+"\nCorreo: "
+                            +datosFuncionario.get(i).getCorreo()+"\nDireccion: "
+                            +datosFuncionario.get(i).getDireccion()+"\nCategoria Licencia: "        
+                            +datosFuncionario.get(i).getCatLin()+"\nVigencia Licencia: "
+                            +datosFuncionario.get(i).getVigLin()+"\nCiudad Licencia: "
+                            +datosFuncionario.get(i).getCiuLin()+"\nRestriccion Licencia: "
+                            +datosFuncionario.get(i).getRestLin());        
+                           
+                    
+
+                    
+                }
+            }
+
+            if (verificarUsu == false) {
+                JOptionPane.showMessageDialog(null, "Identificación Incorrecta");
+            }
+
+        }
+    }
+    
+    public void buscarUsuarioElm(String busUsu) {
+             boolean verificar = false;
+        if (datosFuncionario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
+        } else {
+            
+            for (int i = 0; i < datosFuncionario.size(); i++) {
+
+                if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {  
+                     posicionUsuario = i;
+                    datosFuncionario.remove(posicionUsuario);
+                    verificar = true;
+                     for (int j= jTConduc.getRowCount(); j >=0; j--) {
+            modelo.removeRow(i);    
+            }
+                    for (int j = 0; j < datosFuncionario.size(); j++) {
+                String[] datos = new String[10];
+        datos[0] = datosFuncionario.get(j).getIdentificacion();
+        datos[1] = datosFuncionario.get(j).getNombre()+" "+datosFuncionario.get(j).getApellido();
+        datos[2] = datosFuncionario.get(j).getCelular();
+        datos[3] = datosFuncionario.get(j).getCorreo();
+        datos[4] = datosFuncionario.get(j).getDireccion();
+        datos[5] = datosFuncionario.get(j).getCatLin();
+        //datos[6] = datosFuncionario.get(j).getVigLin();
+        datos[7] = datosFuncionario.get(j).getCiuLin();
+        datos[6] = datosFuncionario.get(j).getRestLin();
+        modelo.addRow(datos);
+       }
+                  
+                }
+            }
+
+            if (verificar == false) {
+                JOptionPane.showMessageDialog(null, "Cedula Incorrecta");
+            }
+            verificar = false;
+        }
+                 
+          
+      }
+    
+    public void buscarUsuarioEditar(String busUsu) {
+        boolean verificar = false;
+        if (datosFuncionario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
+        } else {
+            for (int i = 0; i < datosFuncionario.size(); i++) {
+
+                if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
+                    posicionUsuario = i;
+                    verificar = true;
+                    jTFIdent.setText(datosFuncionario.get(i).getIdentificacion());
+                    jTFNombre.setText(datosFuncionario.get(i).getNombre());
+                    jTFApellido.setText(datosFuncionario.get(i).getApellido());
+                    jTFCelular.setText(datosFuncionario.get(i).getCelular());
+                    jTFCorreo.setText(datosFuncionario.get(i).getCorreo());
+                    jTFDireccion.setText(datosFuncionario.get(i).getDireccion());
+                    jTFRestLicenCond.setText(datosFuncionario.get(i).getRestLin());
+                    jCBCatLicen.setSelectedItem(datosFuncionario.get(i).getCatLin());
+                    //dateChooserCombo1.setCurrent(datosFuncionario.get(i).getVigLin());
+                    jCBCiudadLicen.setSelectedItem(datosFuncionario.get(i).getCiuLin());
+                    System.out.println(datosFuncionario.get(i).getRutaFoto());
+                    System.out.println(datosFuncionario.get(i).getRutaFotoLin());
+                    jLFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFoto())));
+                    
+                    activarCajas();
+                    guardarEditar=true;
+                }
+            }
+
+            if (verificar == false) {
+                JOptionPane.showMessageDialog(null, "Identificación Incorrecta");
+            }
+            verificar = false;
+        }
+    }
      public void cargarTabla() {
         String[] datos = new String[9];
         datos[0] = ident;
@@ -484,7 +642,7 @@ if(guardarEditar==false){
         datos[3] = correo;
         datos[4] = direccion;
         datos[5] = catLin;
-      datos[6] = direccion;
+        datos[6] = fechaDC;
         datos[7] = ciuLin;
         datos[8] = restLin;
         
@@ -532,13 +690,14 @@ if(guardarEditar==false){
             vigLin=vigLin1.getTime();
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
-            
+             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+             fechaDC=formato.format(vigLin);
             
 
-            transFuncionario = new ConductorVO(ident, nombre, apellido, celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
-            datosFuncionario.add(transFuncionario);
-//            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
-            BDConductor.ingresarConductor(transFuncionario);
+//            transFuncionario = new ConductorVO(ident, nombre, apellido, celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
+//            datosFuncionario.add(transFuncionario);
+////            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
+//            BDConductor.ingresarConductor(transFuncionario);
             return true;
         } else {
             return false;
