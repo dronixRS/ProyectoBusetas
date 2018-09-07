@@ -763,7 +763,7 @@ if(guardarEditar==false){
             java.util.Date dateStr;
              try {
                  dateStr = formatter.parse(date);
-                 java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+                 dateDB = new java.sql.Date(dateStr.getTime());
              } catch (ParseException ex) {
                  Logger.getLogger(Conductor.class.getName()).log(Level.SEVERE, null, ex);
              }
