@@ -105,7 +105,7 @@
                               <Component id="jLFoto" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBFotoCond" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -132,7 +132,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jBImgLicen" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jBImgLicen1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBVerLin" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
@@ -211,7 +211,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel111" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jBImgLicen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jBImgLicen1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jBVerLin" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -225,7 +225,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLFoto" min="-2" pref="159" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBFotoCond" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -370,10 +370,13 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLFoto">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="jBFotoCond">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
@@ -381,7 +384,7 @@
             <Property name="text" type="java.lang.String" value="Foto"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBFotoCondActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -481,13 +484,16 @@
         </Component>
         <Component class="datechooser.beans.DateChooserCombo" name="dateChooserCombo1">
         </Component>
-        <Component class="javax.swing.JButton" name="jBImgLicen1">
+        <Component class="javax.swing.JButton" name="jBVerLin">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ver"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBVerLinActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

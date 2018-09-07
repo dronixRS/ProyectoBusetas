@@ -76,7 +76,9 @@ public boolean ingresarConductor(ConductorVO funcionario) {
         PreparedStatement pstmt;
         try {
             //codigo para el ingreso de datos en MySQL
-            pstmt = conexion.prepareStatement("insert into conductor (id_cond,nombre_cond,apellido_cond,ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia,ciudad:licencia,restriccion_licencia,ruta_foto_licencia)"
+            pstmt = conexion.prepareStatement("insert into conductor (id_cond,nombre_cond,apellido_cond"
+                    + ",ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia"
+                    + ",ciudad:licencia,restriccion_licencia,ruta_foto_licencia,id_func)"
                     +"values (?,?,?,?,?,?,?,?,?,?,?,?)");
        
         //asignar valores a los interrogantes
@@ -94,7 +96,8 @@ public boolean ingresarConductor(ConductorVO funcionario) {
         pstmt.setDate(10,sqlDate);
         pstmt.setString(11,funcionario.getRutaFoto());
         pstmt.setString(12,funcionario.getRutaFotoLin());
-
+//        pstmt.setString(13,funcionario.getRutaFotoLin());
+//        pstmt.executeUpdate();
 
         
          } catch (SQLException ex) {

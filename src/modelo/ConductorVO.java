@@ -5,17 +5,17 @@
  */
 package modelo;
 
-import java.util.Calendar;
 import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
 public class ConductorVO extends PersonaVO{
-    String catLin, ciuLin, restLin, rutaFoto, rutaFotoLin; 
+    String catLin, ciuLin, restLin, rutaFoto, rutaFotoLin;
     Date vigLin;
 
-    public ConductorVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, String catLin, String ciuLin, String restLin, String rutaFoto, String rutaFotoLin, Date vigLin) {
+    public ConductorVO(String catLin, String ciuLin, String restLin, String rutaFoto, String rutaFotoLin, Date vigLin, String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
         super(identificacion, nombre, apellido, celular, correo, direccion);
         this.catLin = catLin;
         this.ciuLin = ciuLin;
@@ -23,6 +23,10 @@ public class ConductorVO extends PersonaVO{
         this.rutaFoto = rutaFoto;
         this.rutaFotoLin = rutaFotoLin;
         this.vigLin = vigLin;
+    }
+
+    public ConductorVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
+        super(identificacion, nombre, apellido, celular, correo, direccion);
     }
 
     public String getCatLin() {
@@ -72,8 +76,7 @@ public class ConductorVO extends PersonaVO{
     public void setVigLin(Date vigLin) {
         this.vigLin = vigLin;
     }
-
-   
-
+    
+    
     
 }

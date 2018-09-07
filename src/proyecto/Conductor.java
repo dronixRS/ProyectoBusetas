@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -35,6 +36,7 @@ import modelo.ConductorVO;
 public class Conductor extends javax.swing.JFrame {
 private Connection conexion;
     private Conexion conector;
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
     /**
      * Creates new form Conductor
      */
@@ -44,9 +46,10 @@ private Connection conexion;
     String catLin, ciuLin;
     Date vigLin;
     Calendar vigLin1;
-    
+    ImageIcon img;
     ArrayList<ConductorVO> datosFuncionario;
     ConductorVO transFuncionario;
+    boolean bImg=false;
     
 //    ArrayList<FuncionarioVO> datosFuncionario;
 //    FuncionarioVO transFuncionario;
@@ -67,7 +70,10 @@ private Connection conexion;
         BDConductor=new ConductorDAO();
         
 //        datosFuncionario=new ArrayList<FuncionarioVO>();
+        
+        datosFuncionario=new ArrayList<ConductorVO>();
         datosFuncionarioTabla=new ArrayList<String>();
+       
 //        datosFuncionarioTabla=BDFuncionario.buscarFuncionario();
        
         modelo = new DefaultTableModel();
@@ -118,7 +124,7 @@ private Connection conexion;
         jTConduc = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jLFoto = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        jBFotoCond = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -129,7 +135,7 @@ private Connection conexion;
         jCBCiudadLicen = new javax.swing.JComboBox<>();
         jBImgLicen = new javax.swing.JButton();
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
-        jBImgLicen1 = new javax.swing.JButton();
+        jBVerLin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,12 +209,17 @@ private Connection conexion;
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton11.setText("Salir");
-
-        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton10.setText("Foto");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jBFotoCond.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jBFotoCond.setText("Foto");
+        jBFotoCond.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFotoCondActionPerformed(evt);
             }
         });
 
@@ -241,8 +252,13 @@ private Connection conexion;
             }
         });
 
-        jBImgLicen1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jBImgLicen1.setText("Ver");
+        jBVerLin.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jBVerLin.setText("Ver");
+        jBVerLin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVerLinActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -289,7 +305,7 @@ private Connection conexion;
                             .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addComponent(jButton10))))
+                                .addComponent(jBFotoCond))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(29, 29, 29)
@@ -309,7 +325,7 @@ private Connection conexion;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBImgLicen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBImgLicen1)))
+                        .addComponent(jBVerLin)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,7 +388,7 @@ private Connection conexion;
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel111)
                                     .addComponent(jBImgLicen)
-                                    .addComponent(jBImgLicen1))
+                                    .addComponent(jBVerLin))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -383,7 +399,7 @@ private Connection conexion;
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)
-                                .addComponent(jButton10)
+                                .addComponent(jBFotoCond)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(42, 42, 42))))
         );
@@ -435,7 +451,7 @@ if(guardarEditar==false){
                     "Modificado con exito...");
             limpiarCajas();
             bloquearCajas();
-            
+            guardarEditar=false;
            }else {
             JOptionPane.showMessageDialog(null,
                     "Error de datos");
@@ -455,8 +471,9 @@ if(guardarEditar==false){
             vigLin1=dateChooserCombo1.getSelectedDate();
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
-            
-            transFuncionario = new ConductorVO(ident, nombre, apellido,  celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
+            fechaDC=formato.format(vigLin);
+            transFuncionario = new ConductorVO( catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin,
+                    ident, nombre, apellido,  celular, correo, direccion);
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
             
@@ -464,17 +481,21 @@ if(guardarEditar==false){
             modelo.removeRow(i);    
             }
                            
-//            for (int i = 0; i < datosFuncionario.size(); i++) {
-//                String[] datos = new String[6];
-//        datos[0] = datosFuncionario.get(i).getIdentificacion();
-//        datos[1] = datosFuncionario.get(i).getNombre()+" "+datosFuncionario.get(i).getApellido();
-//        datos[2] = datosFuncionario.get(i).getCelular();
-//        datos[3] = datosFuncionario.get(i).getCorreo();
-//        datos[4] = datosFuncionario.get(i).getDireccion();
-//        datos[5] = datosFuncionario.get(i).getGenero();
-//        //datos[6] = String.valueOf(calcularEdad(datosFuncionario.get(i).getFechaNac()));
-//        modelo.addRow(datos);
-//            }
+            for (int i = 0; i < datosFuncionario.size(); i++) {
+                String[] datos = new String[9];
+        datos[0] = datosFuncionario.get(i).getIdentificacion();
+        datos[1] = datosFuncionario.get(i).getNombre()+" "+datosFuncionario.get(i).getApellido();
+        datos[2] = datosFuncionario.get(i).getCelular();
+        datos[3] = datosFuncionario.get(i).getCorreo();
+        datos[4] = datosFuncionario.get(i).getDireccion();
+        datos[5] = datosFuncionario.get(i).getCatLin();
+        datos[6] = datosFuncionario.get(i).getCiuLin();
+        datos[7] = datosFuncionario.get(i).getRestLin();
+        fechaDC=formato.format(datosFuncionario.get(i).getVigLin());
+        datos[8] = fechaDC;
+      
+        modelo.addRow(datos);
+            }
                   
                     
             
@@ -484,12 +505,13 @@ if(guardarEditar==false){
         }
     }
     
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void jBFotoCondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFotoCondActionPerformed
          jLFoto.setIcon(cargarFoto());
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_jBFotoCondActionPerformed
 
     private void jBImgLicenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImgLicenActionPerformed
-         cargarFotoLicencia();
+        img=cargarFotoLicencia();
+        jBVerLin.setEnabled(true);
     }//GEN-LAST:event_jBImgLicenActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
@@ -521,7 +543,28 @@ if(guardarEditar==false){
          System.err.println(e);
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
-    
+
+    private void jBVerLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerLinActionPerformed
+        verLicencia();
+    }//GEN-LAST:event_jBVerLinActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        Conductor cond=new Conductor();
+        cond.setVisible(false);
+    }//GEN-LAST:event_jButton11ActionPerformed
+     
+    public void verLicencia(){
+        Licencia linc=new Licencia();
+        if (bImg==false) {
+        linc.cargarImg(img);
+        linc.setVisible(true);  
+        }else if (bImg==true) {
+        linc.setVisible(true);
+        bImg=false;
+        }
+        
+    }
+            
     public void buscarUsuario(String busUsu) {
         boolean verificarUsu = false;
         if (datosFuncionario.isEmpty()) {
@@ -600,13 +643,17 @@ if(guardarEditar==false){
       }
     
     public void buscarUsuarioEditar(String busUsu) {
+        bImg=true;
+        Licencia linc=new Licencia();
         boolean verificar = false;
         if (datosFuncionario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
         } else {
             for (int i = 0; i < datosFuncionario.size(); i++) {
-
+                
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
+                    activarCajas();
+                    jBVerLin.setEnabled(true);
                     posicionUsuario = i;
                     verificar = true;
                     jTFIdent.setText(datosFuncionario.get(i).getIdentificacion());
@@ -619,11 +666,11 @@ if(guardarEditar==false){
                     jCBCatLicen.setSelectedItem(datosFuncionario.get(i).getCatLin());
                     //dateChooserCombo1.setCurrent(datosFuncionario.get(i).getVigLin());
                     jCBCiudadLicen.setSelectedItem(datosFuncionario.get(i).getCiuLin());
-                    System.out.println(datosFuncionario.get(i).getRutaFoto());
-                    System.out.println(datosFuncionario.get(i).getRutaFotoLin());
                     jLFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFoto())));
                     
-                    activarCajas();
+                    linc.cargarImg(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFotoLin())));
+                    
+                    
                     guardarEditar=true;
                 }
             }
@@ -661,6 +708,7 @@ if(guardarEditar==false){
         dateChooserCombo1.setCurrent(Calendar.getInstance());
         jCBCiudadLicen.setSelectedIndex(0);
         jTFRestLicenCond.setText("");
+        jLFoto.setIcon(null);
     }
     
        public void obtenerVigLin(){
@@ -690,14 +738,14 @@ if(guardarEditar==false){
             vigLin=vigLin1.getTime();
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
-             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+           
              fechaDC=formato.format(vigLin);
             
 
-//            transFuncionario = new ConductorVO(ident, nombre, apellido, celular, direccion, correo, catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin);
-//            datosFuncionario.add(transFuncionario);
-////            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
-//            BDConductor.ingresarConductor(transFuncionario);
+            transFuncionario = new ConductorVO(catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin, ident, nombre, apellido, celular, correo, direccion);
+            datosFuncionario.add(transFuncionario);
+//            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
+            BDConductor.ingresarConductor(transFuncionario);
             return true;
         } else {
             return false;
@@ -756,6 +804,7 @@ if(guardarEditar==false){
         jBEditar.setEnabled(false);
         jBEliminar.setEnabled(false);
         jBBuscar.setEnabled(false);
+        jBFotoCond.setEnabled(true);
         
     }
     
@@ -776,6 +825,8 @@ if(guardarEditar==false){
         jBEditar.setEnabled(true);
         jBEliminar.setEnabled(true);
         jBBuscar.setEnabled(true);
+        jBVerLin.setEnabled(false);
+        jBFotoCond.setEnabled(false);
         
     }
             
@@ -879,11 +930,11 @@ if(guardarEditar==false){
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBFotoCond;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBImgLicen;
-    private javax.swing.JButton jBImgLicen1;
     private javax.swing.JButton jBNuevo;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jBVerLin;
     private javax.swing.JButton jButton11;
     private javax.swing.JComboBox<String> jCBCatLicen;
     private javax.swing.JComboBox<String> jCBCiudadLicen;
