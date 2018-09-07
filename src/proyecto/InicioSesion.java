@@ -153,6 +153,9 @@ if(jTFUsuario.getText().isEmpty()){
                 MenuPrincipal miMenu = new MenuPrincipal();
                 miMenu.setVisible(true);
                 dispose();
+                
+                Conductor idfuc=new Conductor();
+                idfuc.obtenerIdFunc(cedula);
             }
             
         }

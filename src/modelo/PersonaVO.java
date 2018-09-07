@@ -12,18 +12,17 @@ import java.util.Date;
  * @author Usuario
  */
 public class PersonaVO {
-    String identificacion,nombre,apellido,celular,correo,direccion;
+    String identificacion,nombre,apellido,celular,correo,direccion, id_func;
 
-    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
+    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, String id_func) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.correo = correo;
         this.direccion = direccion;
+        this.id_func = id_func;
     }
-    
-    
 
     public String getIdentificacion() {
         return identificacion;
@@ -72,6 +71,14 @@ public class PersonaVO {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-   
+
+    public String getId_func() {
+        return id_func;
+    }
+
+    public void setId_func(String id_func) {
+        this.id_func = id_func;
+    }
+
     
 }

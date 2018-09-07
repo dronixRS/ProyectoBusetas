@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,10 +37,10 @@ import modelo.ConductorVO;
 public class Conductor extends javax.swing.JFrame {
 private Connection conexion;
     private Conexion conector;
-    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+    SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
     /**
      * Creates new form Conductor
-     */
+     */java.sql.Date sqlDate;
     private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
     String rutaFoto,rutaFotoLinc, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin, fechaDC;
@@ -50,7 +51,8 @@ private Connection conexion;
     ArrayList<ConductorVO> datosFuncionario;
     ConductorVO transFuncionario;
     boolean bImg=false;
-    
+    String id_func="";
+     java.sql.Date dateDB;
 //    ArrayList<FuncionarioVO> datosFuncionario;
 //    FuncionarioVO transFuncionario;
     DefaultTableModel modelo;
@@ -205,6 +207,7 @@ private Connection conexion;
 
             }
         ));
+        jTConduc.setEnabled(false);
         jScrollPane1.setViewportView(jTConduc);
 
         jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -427,7 +430,18 @@ private Connection conexion;
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         activarCajas();
     }//GEN-LAST:event_jBNuevoActionPerformed
-
+    
+    public void obtenerIdFunc(String idd){
+        ArrayList<String> ida=new ArrayList<>();
+        FuncionarioDAO id= new FuncionarioDAO();
+        
+        ida=id.buscarIdFunc(idd);
+        for (int i = 0; i <= (ida.size()-1); i++) {
+           id_func=ida.get(i); 
+        }
+        System.out.println(id_func);
+    }
+    
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 if(guardarEditar==false){
         
@@ -472,8 +486,9 @@ if(guardarEditar==false){
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
             fechaDC=formato.format(vigLin);
-            transFuncionario = new ConductorVO( catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin,
-                    ident, nombre, apellido,  celular, correo, direccion);
+            System.out.println(catLin);
+            transFuncionario = new ConductorVO(
+                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc, id_func);
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
             
@@ -489,10 +504,12 @@ if(guardarEditar==false){
         datos[3] = datosFuncionario.get(i).getCorreo();
         datos[4] = datosFuncionario.get(i).getDireccion();
         datos[5] = datosFuncionario.get(i).getCatLin();
-        datos[6] = datosFuncionario.get(i).getCiuLin();
-        datos[7] = datosFuncionario.get(i).getRestLin();
         fechaDC=formato.format(datosFuncionario.get(i).getVigLin());
-        datos[8] = fechaDC;
+        datos[6] = fechaDC;
+        datos[7] = datosFuncionario.get(i).getCiuLin();
+        datos[8] = datosFuncionario.get(i).getRestLin();
+        
+       
       
         modelo.addRow(datos);
             }
@@ -549,8 +566,7 @@ if(guardarEditar==false){
     }//GEN-LAST:event_jBVerLinActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        MenuPrincipal cond=new MenuPrincipal();
-        cond.cerrarConductor();
+        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
      
     public void verLicencia(){
@@ -652,6 +668,7 @@ if(guardarEditar==false){
             for (int i = 0; i < datosFuncionario.size(); i++) {
                 
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
+                   guardarEditar=true;
                     posicionUsuario = i;
                     activarCajas();
                     jBVerLin.setEnabled(true);
@@ -672,7 +689,7 @@ if(guardarEditar==false){
                     linc.cargarImg(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFotoLin())));
                     
                     
-                    guardarEditar=true;
+                    
                 }
             }
 
@@ -734,16 +751,31 @@ if(guardarEditar==false){
             correo = jTFCorreo.getText();
             direccion = jTFDireccion.getText();
             catLin= (String)(jCBCatLicen.getSelectedItem());
-            obtenerVigLin();
-            vigLin1=dateChooserCombo1.getSelectedDate();
-            vigLin=vigLin1.getTime();
+             System.out.println(catLin);
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
-           
-             fechaDC=formato.format(vigLin);
+            obtenerVigLin();
+            vigLin1=(dateChooserCombo1.getSelectedDate());
+            vigLin=vigLin1.getTime();
+            fechaDC=formato.format(vigLin);
+            String date = fechaDC;
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); // your template here
+            java.util.Date dateStr;
+             try {
+                 dateStr = formatter.parse(date);
+                 java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+             } catch (ParseException ex) {
+                 Logger.getLogger(Conductor.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
-
-            transFuncionario = new ConductorVO(catLin, ciuLin, restLin, rutaFoto, rutaFotoLinc, vigLin, ident, nombre, apellido, celular, correo, direccion);
+            
+//            java.sql.Date sqlDate = new java.sql.Date(vigLin.getTime());
+            
+           
+             
+            
+             
+            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc,id_func);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDConductor.ingresarConductor(transFuncionario);

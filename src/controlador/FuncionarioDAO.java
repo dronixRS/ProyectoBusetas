@@ -33,6 +33,35 @@ public class FuncionarioDAO {
             System.err.println(e);
         }
     }
+    public ArrayList buscarIdFunc( String nom){
+
+        PreparedStatement pstmt;
+        ResultSet resultado;
+        ArrayList<String> funcionario = new ArrayList<>();
+        try {
+            pstmt=conexion.prepareStatement(
+            "select id_func, nombre_func, apellido_func, celular_func, correo_func, direccion_func, usuario_func, clave_func from funcionario where id_func=?");
+            pstmt.setString(1,nom);
+
+            resultado=pstmt.executeQuery();
+                            
+            while (resultado.next() == true) {
+              
+	    funcionario.add(resultado.getString("id_func"));
+            
+	}
+        return funcionario;                   
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,
+					"No se realizo la busqueda\n" + ex,
+					"mensaje Error", JOptionPane.ERROR_MESSAGE);
+			
+        }
+	return null;
+	
+        
+    }
     
     public ArrayList<String> buscarFuncionarioLogin(String idUsu, String clave){
         PreparedStatement pstmt;
@@ -47,7 +76,7 @@ public class FuncionarioDAO {
             resultado=pstmt.executeQuery();
                             
             while (resultado.next() == true) {
-                
+              
 	    funcionario.add(resultado.getString("usuario_func"));
             funcionario.add(resultado.getString("clave_func"));
             

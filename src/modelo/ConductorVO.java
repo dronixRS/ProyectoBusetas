@@ -15,8 +15,9 @@ public class ConductorVO extends PersonaVO{
     String catLin, ciuLin, restLin, rutaFoto, rutaFotoLin;
     Date vigLin;
 
-    public ConductorVO(String catLin, String ciuLin, String restLin, String rutaFoto, String rutaFotoLin, Date vigLin, String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
-        super(identificacion, nombre, apellido, celular, correo, direccion);
+    public ConductorVO(String identificacion, String nombre, String apellido, String rutaFoto, String celular,
+        String correo, String direccion,String catLin, Date vigLin, String ciuLin, String restLin, String rutaFotoLin,String id_func) {
+        super(identificacion, nombre, apellido, celular, correo, direccion, id_func);
         this.catLin = catLin;
         this.ciuLin = ciuLin;
         this.restLin = restLin;
@@ -25,8 +26,8 @@ public class ConductorVO extends PersonaVO{
         this.vigLin = vigLin;
     }
 
-    public ConductorVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
-        super(identificacion, nombre, apellido, celular, correo, direccion);
+    public ConductorVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, String id_func) {
+        super(identificacion, nombre, apellido, celular, correo, direccion, id_func);
     }
 
     public String getCatLin() {
@@ -76,6 +77,7 @@ public class ConductorVO extends PersonaVO{
     public void setVigLin(Date vigLin) {
         this.vigLin = vigLin;
     }
+        
     
     
     
