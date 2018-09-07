@@ -549,8 +549,8 @@ if(guardarEditar==false){
     }//GEN-LAST:event_jBVerLinActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        Conductor cond=new Conductor();
-        cond.setVisible(false);
+        MenuPrincipal cond=new MenuPrincipal();
+        cond.cerrarConductor();
     }//GEN-LAST:event_jButton11ActionPerformed
      
     public void verLicencia(){
@@ -652,9 +652,10 @@ if(guardarEditar==false){
             for (int i = 0; i < datosFuncionario.size(); i++) {
                 
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
+                    posicionUsuario = i;
                     activarCajas();
                     jBVerLin.setEnabled(true);
-                    posicionUsuario = i;
+                    
                     verificar = true;
                     jTFIdent.setText(datosFuncionario.get(i).getIdentificacion());
                     jTFNombre.setText(datosFuncionario.get(i).getNombre());

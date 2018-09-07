@@ -70,8 +70,8 @@ public class Licencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Licencia lin= new Licencia();
-        lin.setVisible(false); 
+         MenuPrincipal cond=new MenuPrincipal();
+        cond.cerrarLicencia();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

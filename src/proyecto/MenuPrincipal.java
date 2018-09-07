@@ -191,7 +191,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+public void cerrarConductor(){
+    Conductor miUsuario = new Conductor();
+        miUsuario.setVisible(false);
+}
+public void cerrarLicencia(){
+    Licencia miUsuario = new Licencia();
+        miUsuario.setVisible(false);
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMConsulta;
