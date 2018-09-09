@@ -154,8 +154,7 @@ if(jTFUsuario.getText().isEmpty()){
                 miMenu.setVisible(true);
                 dispose();
                 
-                Conductor idfuc=new Conductor();
-                idfuc.obtenerIdFunc(cedula);
+                
             }
             
         }

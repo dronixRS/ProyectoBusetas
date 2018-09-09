@@ -43,19 +43,18 @@ public class ConductorDAO {
                             
             while (resultado.next() == true) {
                 
-	    funcionario.add(resultado.getString("id_func"));
-            funcionario.add(resultado.getString("nombre_func"));
-            funcionario.add(resultado.getString("apellido_func"));
-            funcionario.add(resultado.getString("celular_func"));
-            funcionario.add(resultado.getString("correo_func"));
-            funcionario.add(resultado.getString("direccion_func"));
-            funcionario.add(resultado.getString("genero_func"));
-            funcionario.add(resultado.getString("correo_func"));
-            funcionario.add(resultado.getString("direccion_func"));
+	    funcionario.add(resultado.getString("id_cond"));
+            funcionario.add(resultado.getString("nombre_cond"));
+            funcionario.add(resultado.getString("apellido_cond"));
+            funcionario.add(resultado.getString("ruta_foto_cond"));
+            funcionario.add(resultado.getString("celular_cond"));
+            funcionario.add(resultado.getString("correo_cond"));
+            funcionario.add(resultado.getString("direccion_cond"));
             funcionario.add(resultado.getString("categoria_licencia"));
-            funcionario.add(resultado.getString("ciudad_licencia"));
-            funcionario.add(resultado.getString("restirccion_licencia"));
             funcionario.add(resultado.getString("vigencia_licencia"));
+            funcionario.add(resultado.getString("ciudad_licencia"));
+            funcionario.add(resultado.getString("restriccion_licencia"));
+            funcionario.add(resultado.getString("ruta_foto_licencia"));
             
             
 	}
@@ -78,25 +77,24 @@ public boolean ingresarConductor(ConductorVO funcionario) {
             //codigo para el ingreso de datos en MySQL
             pstmt = conexion.prepareStatement("insert into conductor (id_cond,nombre_cond,apellido_cond"
                     + ",ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia"
-                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia,id_func)"
-                    +"values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia)"
+                    +"values (?,?,?,?,?,?,?,?,?,?,?,?)");
        
         //asignar valores a los interrogantes
+        
         pstmt.setString(1, funcionario.getIdentificacion());
         pstmt.setString(2,funcionario.getNombre());
         pstmt.setString(3,funcionario.getApellido());
-        pstmt.setString(4,funcionario.getCelular());
-        pstmt.setString(5,funcionario.getCorreo());
-        pstmt.setString(6,funcionario.getDireccion());
-        pstmt.setString(7,funcionario.getCatLin());
-        pstmt.setString(8,funcionario.getCiuLin());
-        pstmt.setString(9,funcionario.getRestLin());
-                //acomodar la fecha al formato de MySQL
-        java.sql.Date sqlDate = new java.sql.Date(funcionario.getVigLin().getTime());
-        pstmt.setDate(10,sqlDate);
-        pstmt.setString(11,funcionario.getRutaFoto());
+        pstmt.setString(4,funcionario.getRutaFoto());
+        pstmt.setString(5,funcionario.getCelular());
+        pstmt.setString(6,funcionario.getCorreo());
+        pstmt.setString(7,funcionario.getDireccion());
+        pstmt.setString(8,funcionario.getCatLin());
+         java.sql.Date sqlDate = new java.sql.Date(funcionario.getVigLin().getTime());
+        pstmt.setDate(9,sqlDate);
+        pstmt.setString(10,funcionario.getCiuLin());
+        pstmt.setString(11,funcionario.getRestLin());
         pstmt.setString(12,funcionario.getRutaFotoLin());
-        pstmt.setString(13, funcionario.getId_func());
         pstmt.executeUpdate();
 
         

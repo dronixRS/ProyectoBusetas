@@ -71,12 +71,11 @@ private Connection conexion;
        
         BDConductor=new ConductorDAO();
         
-//        datosFuncionario=new ArrayList<FuncionarioVO>();
+
         
         datosFuncionario=new ArrayList<ConductorVO>();
         datosFuncionarioTabla=new ArrayList<String>();
-       
-//        datosFuncionarioTabla=BDFuncionario.buscarFuncionario();
+        datosFuncionarioTabla=BDConductor.buscarConductor();
        
         modelo = new DefaultTableModel();
         modelo.addColumn("Ident.");
@@ -90,9 +89,11 @@ private Connection conexion;
         modelo.addColumn("Restriccion Licencia");
         //modelo.addColumn("Edad");
         this.jTConduc.setModel(modelo);
-        this.jTConduc.getColumn(jTConduc.getColumnName(0)).setMaxWidth(80);
-        this.jTConduc.getColumn(jTConduc.getColumnName(4)).setMaxWidth(80);
-        this.jTConduc.getColumn(jTConduc.getColumnName(8)).setMaxWidth(80);
+        this.jTConduc.getColumn(jTConduc.getColumnName(0)).setMaxWidth(100);
+        this.jTConduc.getColumn(jTConduc.getColumnName(4)).setMaxWidth(100);
+        this.jTConduc.getColumn(jTConduc.getColumnName(8)).setMaxWidth(100);
+         BDConductor=new ConductorDAO();
+         cargarTablaInicio();
     }
 
     /**
@@ -431,16 +432,23 @@ private Connection conexion;
         activarCajas();
     }//GEN-LAST:event_jBNuevoActionPerformed
     
-    public void obtenerIdFunc(String idd){
-        ArrayList<String> ida=new ArrayList<>();
-        FuncionarioDAO id= new FuncionarioDAO();
+  public void cargarTablaInicio(){
         
-        ida=id.buscarIdFunc(idd);
-        for (int i = 0; i <= (ida.size()-1); i++) {
-           id_func=ida.get(i); 
+        for (int i = 0; i < datosFuncionarioTabla.size(); i=i+13) {
+            
+            String[] datos=new String[9];
+            datos[0]=datosFuncionarioTabla.get(i);
+            datos[1]=datosFuncionarioTabla.get(i+1)+" "+datosFuncionarioTabla.get(i+2);
+            datos[2]=datosFuncionarioTabla.get(i+4);
+            datos[3]=datosFuncionarioTabla.get(i+5);
+            datos[4]=datosFuncionarioTabla.get(i+6);
+            datos[5]=datosFuncionarioTabla.get(i+7);
+            datos[6]=datosFuncionarioTabla.get(i+8);
+            datos[7]=datosFuncionarioTabla.get(i+9);
+            datos[8]=datosFuncionarioTabla.get(i+10);
+            modelo.addRow(datos);
         }
-        System.out.println(id_func);
-    }
+ }
     
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 if(guardarEditar==false){
@@ -448,11 +456,12 @@ if(guardarEditar==false){
         if (guardarDatos() == true) {
             JOptionPane.showMessageDialog(null,
                     "Guardado con exito...");
+             posicionUsuario=-1;
             cargarTabla();
             limpiarCajas();
             bloquearCajas();
-            
-            posicionUsuario=-1;
+           
+        
         } else {
             JOptionPane.showMessageDialog(null,
                     "Error de datos");
@@ -487,8 +496,10 @@ if(guardarEditar==false){
             restLin= jTFRestLicenCond.getText();
             fechaDC=formato.format(vigLin);
             System.out.println(catLin);
+            
             transFuncionario = new ConductorVO(
-                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc, id_func);
+                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc);
+            
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
             
@@ -668,8 +679,8 @@ if(guardarEditar==false){
             for (int i = 0; i < datosFuncionario.size(); i++) {
                 
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {
-                   guardarEditar=true;
                     posicionUsuario = i;
+                    guardarEditar=true;
                     activarCajas();
                     jBVerLin.setEnabled(true);
                     
@@ -775,7 +786,7 @@ if(guardarEditar==false){
              
             
              
-            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc,id_func);
+            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDConductor.ingresarConductor(transFuncionario);
