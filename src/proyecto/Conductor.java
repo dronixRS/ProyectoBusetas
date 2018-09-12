@@ -502,7 +502,7 @@ if(guardarEditar==false){
             
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
-            
+            BDConductor.editarConductor(transFuncionario);
             for (int i = jTConduc.getRowCount()-1; i >=0; i--) {
             modelo.removeRow(i);    
             }
