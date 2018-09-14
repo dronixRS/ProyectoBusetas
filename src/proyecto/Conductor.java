@@ -45,7 +45,9 @@ private Connection conexion;
             "Archivo de Imagen", "jpg");
     String rutaFoto,rutaFotoLinc, ident, nombre, apellido, celular, direccion, correo,    restLin, imgLin, fechaDC;
     String catLin, ciuLin;
+    boolean estado;
     Date vigLin;
+    String id2;
     Calendar vigLin1;
     ImageIcon img;
     ArrayList<ConductorVO> datosFuncionario;
@@ -496,13 +498,13 @@ if(guardarEditar==false){
             restLin= jTFRestLicenCond.getText();
             fechaDC=formato.format(vigLin);
             System.out.println(catLin);
-            
+            estado=true;
             transFuncionario = new ConductorVO(
-                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc);
+                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc,estado);
             
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
-            BDConductor.editarConductor(transFuncionario);
+            BDConductor.editarConductor(transFuncionario,id2);
             for (int i = jTConduc.getRowCount()-1; i >=0; i--) {
             modelo.removeRow(i);    
             }
@@ -638,6 +640,7 @@ if(guardarEditar==false){
 
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {  
                      posicionUsuario = i;
+                     id2=datosFuncionario.get(i).getIdentificacion();
                     datosFuncionario.remove(posicionUsuario);
                     verificar = true;
                      for (int j= jTConduc.getRowCount(); j >=0; j--) {
@@ -655,6 +658,7 @@ if(guardarEditar==false){
         datos[7] = datosFuncionario.get(j).getCiuLin();
         datos[6] = datosFuncionario.get(j).getRestLin();
         modelo.addRow(datos);
+         BDConductor.eliminarConductor(id2);
        }
                   
                 }
@@ -686,6 +690,7 @@ if(guardarEditar==false){
                     
                     verificar = true;
                     jTFIdent.setText(datosFuncionario.get(i).getIdentificacion());
+                    id2=datosFuncionario.get(i).getIdentificacion();
                     jTFNombre.setText(datosFuncionario.get(i).getNombre());
                     jTFApellido.setText(datosFuncionario.get(i).getApellido());
                     jTFCelular.setText(datosFuncionario.get(i).getCelular());
@@ -782,11 +787,11 @@ if(guardarEditar==false){
             
 //            java.sql.Date sqlDate = new java.sql.Date(vigLin.getTime());
             
-           
+           estado=true;
              
             
              
-            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc);
+            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc, estado);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDConductor.ingresarConductor(transFuncionario);

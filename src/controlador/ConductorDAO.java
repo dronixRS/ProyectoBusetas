@@ -77,8 +77,54 @@ public boolean ingresarConductor(ConductorVO funcionario) {
             //codigo para el ingreso de datos en MySQL
             pstmt = conexion.prepareStatement("insert into conductor (id_cond,nombre_cond,apellido_cond"
                     + ",ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia"
-                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia)"
-                    +"values (?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia,estado_cond)"
+                    +"values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+       
+        //asignar valores a los interrogantes
+        
+        pstmt.setString(1, funcionario.getIdentificacion());
+        pstmt.setString(2,funcionario.getNombre());
+        pstmt.setString(3,funcionario.getApellido());
+        pstmt.setString(4,funcionario.getRutaFoto());
+        pstmt.setString(5,funcionario.getCelular());
+        pstmt.setString(6,funcionario.getCorreo());
+        pstmt.setString(7,funcionario.getDireccion());
+        pstmt.setString(8,funcionario.getCatLin());
+         java.sql.Date sqlDate = new java.sql.Date(funcionario.getVigLin().getTime());
+        pstmt.setDate(9,sqlDate);
+        pstmt.setString(10,funcionario.getCiuLin());
+        pstmt.setString(11,funcionario.getRestLin());
+        pstmt.setString(12,funcionario.getRutaFotoLin());
+        pstmt.setBoolean(13, funcionario.isEstado());
+        pstmt.executeUpdate();
+
+        
+         } catch (SQLException ex) {
+             //guarda el error en una carpeta
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null,
+					"No se guardo la información\n" + ex,
+					"mensaje Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+        }
+        return true;
+    
+    }
+    
+
+   
+    
+    public boolean editarConductor(ConductorVO funcionario, String idd) {
+        
+         
+        PreparedStatement pstmt;
+        try {
+            //codigo para el ingreso de datos en MySQL
+            pstmt = conexion.prepareStatement("UPDATE conductor SET id_cond=?,nombre_cond=?,apellido_cond=?"
+                    + ",ruta_foto_cond=?,celular_cond=?,correo_cond=?,direccion_cond=?,categoria_licencia=?,vigencia_licencia=?"
+                    + ",ciudad_licencia=?,restriccion_licencia=?,ruta_foto_licencia=?"
+                    +" WHERE id_cond= "+idd);
+        
        
         //asignar valores a los interrogantes
         
@@ -110,36 +156,19 @@ public boolean ingresarConductor(ConductorVO funcionario) {
     
     }
     
-   
-    
-    public boolean editarConductor(ConductorVO funcionario) {
+     public boolean eliminarConductor(String idd) {
         
-         String idc;
+         
         PreparedStatement pstmt;
         try {
             //codigo para el ingreso de datos en MySQL
-            idc=funcionario.getIdentificacion();
-            pstmt = conexion.prepareStatement("UPDATE conductor \n SET (id_cond=?,nombre_cond=?,apellido_cond=?"
-                    + ",ruta_foto_cond=?,celular_cond=?,correo_cond=?,direccion_cond=?,categoria_licencia=?,vigencia_licencia=?"
-                    + ",ciudad_licencia=?,restriccion_licencia=?,ruta_foto_licencia=?)"
-                    +"\n WHERE id_cond= "+idc);
+            pstmt = conexion.prepareStatement("UPDATE conductor SET estado_cond=false"
+                    +" WHERE id_cond= "+idd);
         
        
         //asignar valores a los interrogantes
         
-        pstmt.setString(1, funcionario.getIdentificacion());
-        pstmt.setString(2,funcionario.getNombre());
-        pstmt.setString(3,funcionario.getApellido());
-        pstmt.setString(4,funcionario.getRutaFoto());
-        pstmt.setString(5,funcionario.getCelular());
-        pstmt.setString(6,funcionario.getCorreo());
-        pstmt.setString(7,funcionario.getDireccion());
-        pstmt.setString(8,funcionario.getCatLin());
-         java.sql.Date sqlDate = new java.sql.Date(funcionario.getVigLin().getTime());
-        pstmt.setDate(9,sqlDate);
-        pstmt.setString(10,funcionario.getCiuLin());
-        pstmt.setString(11,funcionario.getRestLin());
-        pstmt.setString(12,funcionario.getRutaFotoLin());
+        
         pstmt.executeUpdate();
 
         

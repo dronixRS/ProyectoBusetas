@@ -13,14 +13,16 @@ import java.util.Date;
  */
 public class PersonaVO {
     String identificacion,nombre,apellido,celular,correo,direccion;
+    boolean estado;
 
-    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion) {
+    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, boolean estado) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.correo = correo;
         this.direccion = direccion;
+        this.estado = estado;
     }
 
     public String getIdentificacion() {
@@ -71,6 +73,15 @@ public class PersonaVO {
         this.direccion = direccion;
     }
 
-   
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
     
-}
+    
+    }
+
+
