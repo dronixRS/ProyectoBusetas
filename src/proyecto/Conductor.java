@@ -51,6 +51,7 @@ private Connection conexion;
     Calendar vigLin1;
     ImageIcon img;
     ArrayList<ConductorVO> datosFuncionario;
+    ArrayList<String> datosInicio;
     ConductorVO transFuncionario;
     boolean bImg=false;
     String id_func="";
@@ -76,8 +77,10 @@ private Connection conexion;
 
         
         datosFuncionario=new ArrayList<ConductorVO>();
+        datosInicio=new ArrayList<String>();
         datosFuncionarioTabla=new ArrayList<String>();
         datosFuncionarioTabla=BDConductor.buscarConductor();
+        datosInicio=BDConductor.buscarConductor();
        
         modelo = new DefaultTableModel();
         modelo.addColumn("Ident.");
@@ -434,11 +437,17 @@ private Connection conexion;
         activarCajas();
     }//GEN-LAST:event_jBNuevoActionPerformed
     
+    public void obIDFunc(String id){
+        id_func=id;
+    }
+    
   public void cargarTablaInicio(){
+      String ver;
         
         for (int i = 0; i < datosFuncionarioTabla.size(); i=i+13) {
-            
-            String[] datos=new String[9];
+            ver=datosFuncionarioTabla.get(i+12);
+            if (ver.equals("1")) {
+              String[] datos=new String[9];
             datos[0]=datosFuncionarioTabla.get(i);
             datos[1]=datosFuncionarioTabla.get(i+1)+" "+datosFuncionarioTabla.get(i+2);
             datos[2]=datosFuncionarioTabla.get(i+4);
@@ -448,8 +457,51 @@ private Connection conexion;
             datos[6]=datosFuncionarioTabla.get(i+8);
             datos[7]=datosFuncionarioTabla.get(i+9);
             datos[8]=datosFuncionarioTabla.get(i+10);
-            modelo.addRow(datos);
+            modelo.addRow(datos);  
+            
+            ident = datosFuncionarioTabla.get(i);
+            nombre = datosFuncionarioTabla.get(i+1);
+            apellido = datosFuncionarioTabla.get(i+2);
+            rutaFoto= datosFuncionarioTabla.get(i+3);
+            celular = datosFuncionarioTabla.get(i+4);
+            correo = datosFuncionarioTabla.get(i+5);
+            direccion = datosFuncionarioTabla.get(i+6);
+            catLin= datosFuncionarioTabla.get(i+7);
+             
+            ciuLin= datosFuncionarioTabla.get(i+9);
+            restLin= datosFuncionarioTabla.get(i+10);
+            rutaFotoLinc=datosFuncionarioTabla.get(i+11);
+            fechaDC=datosFuncionarioTabla.get(i+8);
+                try {
+                    vigLin=formato.parse(fechaDC);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Conductor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            fechaDC=formato.format(vigLin);
+            String date = fechaDC;
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); // your template here
+            java.util.Date dateStr;
+             try {
+                 dateStr = formatter.parse(date);
+                 dateDB = new java.sql.Date(dateStr.getTime());
+             } catch (ParseException ex) {
+                 Logger.getLogger(Conductor.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            
+            
+//            java.sql.Date sqlDate = new java.sql.Date(vigLin.getTime());
+            
+           estado=true;
+             
+            
+             
+            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc,id_func, estado);
+            datosFuncionario.add(transFuncionario);
+            
+            }
+            
         }
+       
  }
     
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -500,7 +552,7 @@ if(guardarEditar==false){
             System.out.println(catLin);
             estado=true;
             transFuncionario = new ConductorVO(
-                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc,estado);
+                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc,id_func,estado);
             
             datosFuncionario.set(posicionUsuario,transFuncionario);
 //                       
@@ -641,24 +693,27 @@ if(guardarEditar==false){
                 if (datosFuncionario.get(i).getIdentificacion().equals(busUsu)) {  
                      posicionUsuario = i;
                      id2=datosFuncionario.get(i).getIdentificacion();
+                     System.out.println(id2);
+                      BDConductor.eliminarConductor(id2);
                     datosFuncionario.remove(posicionUsuario);
                     verificar = true;
                      for (int j= jTConduc.getRowCount(); j >=0; j--) {
             modelo.removeRow(i);    
             }
+                     
                     for (int j = 0; j < datosFuncionario.size(); j++) {
-                String[] datos = new String[10];
+                String[] datos = new String[9];
         datos[0] = datosFuncionario.get(j).getIdentificacion();
         datos[1] = datosFuncionario.get(j).getNombre()+" "+datosFuncionario.get(j).getApellido();
         datos[2] = datosFuncionario.get(j).getCelular();
         datos[3] = datosFuncionario.get(j).getCorreo();
         datos[4] = datosFuncionario.get(j).getDireccion();
         datos[5] = datosFuncionario.get(j).getCatLin();
-        //datos[6] = datosFuncionario.get(j).getVigLin();
+//        datos[6] = datosFuncionario.get(j).getVigLin();
         datos[7] = datosFuncionario.get(j).getCiuLin();
-        datos[6] = datosFuncionario.get(j).getRestLin();
+        datos[8] = datosFuncionario.get(j).getRestLin();
         modelo.addRow(datos);
-         BDConductor.eliminarConductor(id2);
+        
        }
                   
                 }
@@ -672,9 +727,39 @@ if(guardarEditar==false){
                  
           
       }
+        
+    public ImageIcon buscImg(String fil){
+        
+        
+        ImageIcon icon = new ImageIcon(fil);
+            //extrae la imagen del icono
+            Image img = icon.getImage();
+            //cambiando el tamaño a la imagen
+            Image newImg = img.getScaledInstance(154, 154,
+                    java.awt.Image.SCALE_SMOOTH);
+            //se genera un imagenIcon con la nueva imagen
+            ImageIcon newIcon = new ImageIcon(newImg);
+            //rutaImagen=file;
+            return newIcon;
+    }
+    public ImageIcon buscImgLin(String fil){
+        
+        
+        ImageIcon icon = new ImageIcon(fil);
+            //extrae la imagen del icono
+            Image img = icon.getImage();
+            //cambiando el tamaño a la imagen
+            Image newImg = img.getScaledInstance(485, 220,
+                    java.awt.Image.SCALE_SMOOTH);
+            //se genera un imagenIcon con la nueva imagen
+            ImageIcon newIcon = new ImageIcon(newImg);
+            //rutaImagen=file;
+            return newIcon;
+    }
+    
     
     public void buscarUsuarioEditar(String busUsu) {
-        bImg=true;
+        bImg=false;
         Licencia linc=new Licencia();
         boolean verificar = false;
         if (datosFuncionario.isEmpty()) {
@@ -700,9 +785,10 @@ if(guardarEditar==false){
                     jCBCatLicen.setSelectedItem(datosFuncionario.get(i).getCatLin());
                     //dateChooserCombo1.setCurrent(datosFuncionario.get(i).getVigLin());
                     jCBCiudadLicen.setSelectedItem(datosFuncionario.get(i).getCiuLin());
-                    jLFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFoto())));
+                    jLFoto.setIcon(buscImg(datosFuncionario.get(i).getRutaFoto()));
                     
-                    linc.cargarImg(new javax.swing.ImageIcon(getClass().getResource(datosFuncionario.get(i).getRutaFotoLin())));
+                    img=(buscImgLin(datosFuncionario.get(i).getRutaFotoLin()));
+                    
                     
                     
                     
@@ -791,7 +877,7 @@ if(guardarEditar==false){
              
             
              
-            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc, estado);
+            transFuncionario = new ConductorVO(ident, nombre, apellido, rutaFoto, celular, correo, direccion, catLin, dateDB, ciuLin, restLin,rutaFotoLinc,id_func, estado);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDConductor.ingresarConductor(transFuncionario);
@@ -934,7 +1020,7 @@ if(guardarEditar==false){
             //extrae la imagen del icono
             Image img = icon.getImage();
             //cambiando el tamaño a la imagen
-            Image newImg = img.getScaledInstance(107, 154,
+            Image newImg = img.getScaledInstance(154, 154,
                     java.awt.Image.SCALE_SMOOTH);
             //se genera un imagenIcon con la nueva imagen
             ImageIcon newIcon = new ImageIcon(newImg);
@@ -962,7 +1048,7 @@ if(guardarEditar==false){
             //extrae la imagen del icono
             Image img = icon.getImage();
             //cambiando el tamaño a la imagen
-            Image newImg = img.getScaledInstance(107, 154,
+            Image newImg = img.getScaledInstance(450, 150,
                     java.awt.Image.SCALE_SMOOTH);
             //se genera un imagenIcon con la nueva imagen
             ImageIcon newIcon = new ImageIcon(newImg);

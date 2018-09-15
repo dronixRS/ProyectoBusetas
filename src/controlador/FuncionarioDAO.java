@@ -66,5 +66,36 @@ public class FuncionarioDAO {
 	
         
     }
+    public String buscarFuncionarioID(String idUsu, String clave){
+        PreparedStatement pstmt;
+        ResultSet resultado;
+       String iD="";
+        try {
+            pstmt=conexion.prepareStatement(
+            "select id_func from funcionario where usuario_func=? and clave_func=?");
+            pstmt.setString(1,idUsu);
+            pstmt.setString(2,clave);
+            
+            resultado=pstmt.executeQuery();
+                            
+            while (resultado.next() == true) {
+              
+	    iD=(resultado.getString("id_func"));
+            
+            
+            
+	}
+        return iD;                   
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,
+					"No se realizo la busqueda\n" + ex,
+					"mensaje Error", JOptionPane.ERROR_MESSAGE);
+			
+        }
+	return null;
+	
+        
+    }
 
 }

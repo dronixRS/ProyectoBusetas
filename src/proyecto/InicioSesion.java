@@ -14,8 +14,9 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class InicioSesion extends javax.swing.JFrame {
-        String cedula,clave;
+        String cedula,clave,id;
         FuncionarioDAO BDFuncionario;
+      
     /**
      * Creates new form InicioSesion
      */
@@ -144,14 +145,17 @@ if(jTFUsuario.getText().isEmpty()){
             ArrayList<String> transDatos = new ArrayList<>();
             
             transDatos = BDFuncionario.buscarFuncionarioLogin(cedula, clave);
-            System.err.println(transDatos.size());
+             id=BDFuncionario.buscarFuncionarioID(cedula, clave);
             
             if(transDatos==null|| transDatos.size()==0){
                 JOptionPane.showMessageDialog(null, "Usuario o Clave Incorrecta");
                 
             }else{
+               
+                
                 MenuPrincipal miMenu = new MenuPrincipal();
                 miMenu.setVisible(true);
+                miMenu.obIdFunc(id);
                 dispose();
                 
                 

@@ -36,7 +36,7 @@ public class ConductorDAO {
          ResultSet resultado;
          ArrayList<String> funcionario= new ArrayList<>();
           try{
-            pstm=conexion.prepareStatement("select id_cond,nombre_cond,apellido_cond,ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia,ciudad_licencia,restriccion_licencia,ruta_foto_licencia  from conductor");
+            pstm=conexion.prepareStatement("select id_cond,nombre_cond,apellido_cond,ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia,ciudad_licencia,restriccion_licencia,ruta_foto_licencia,estado_cond  from conductor");
             
             
             resultado=pstm.executeQuery();
@@ -55,7 +55,7 @@ public class ConductorDAO {
             funcionario.add(resultado.getString("ciudad_licencia"));
             funcionario.add(resultado.getString("restriccion_licencia"));
             funcionario.add(resultado.getString("ruta_foto_licencia"));
-            
+              funcionario.add(resultado.getString("estado_cond"));
             
 	}
             return funcionario;
@@ -77,8 +77,8 @@ public boolean ingresarConductor(ConductorVO funcionario) {
             //codigo para el ingreso de datos en MySQL
             pstmt = conexion.prepareStatement("insert into conductor (id_cond,nombre_cond,apellido_cond"
                     + ",ruta_foto_cond,celular_cond,correo_cond,direccion_cond,categoria_licencia,vigencia_licencia"
-                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia,estado_cond)"
-                    +"values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + ",ciudad_licencia,restriccion_licencia,ruta_foto_licencia,id_func,estado_cond)"
+                    +"values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
        
         //asignar valores a los interrogantes
         
@@ -95,7 +95,9 @@ public boolean ingresarConductor(ConductorVO funcionario) {
         pstmt.setString(10,funcionario.getCiuLin());
         pstmt.setString(11,funcionario.getRestLin());
         pstmt.setString(12,funcionario.getRutaFotoLin());
-        pstmt.setBoolean(13, funcionario.isEstado());
+        pstmt.setString(13,funcionario.getId_func());
+        pstmt.setBoolean(14, funcionario.isEstado());
+        
         pstmt.executeUpdate();
 
         
@@ -162,10 +164,10 @@ public boolean ingresarConductor(ConductorVO funcionario) {
         PreparedStatement pstmt;
         try {
             //codigo para el ingreso de datos en MySQL
-            pstmt = conexion.prepareStatement("UPDATE conductor SET estado_cond=false"
-                    +" WHERE id_cond= "+idd);
+            pstmt = conexion.prepareStatement("UPDATE conductor SET estado_cond=0"
+                    +" WHERE id_cond="+idd);
         
-       
+     
         //asignar valores a los interrogantes
         
         

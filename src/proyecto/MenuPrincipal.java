@@ -10,7 +10,7 @@ package proyecto;
  * @author Usuario
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+String idFu;
     /**
      * Creates new form MenuPrincipal
      */
@@ -151,8 +151,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMIConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConductorActionPerformed
         Conductor miUsuario = new Conductor();
         miUsuario.setVisible(true);
+        miUsuario.obIDFunc(idFu);
+        
     }//GEN-LAST:event_jMIConductorActionPerformed
 
+    public void obIdFunc(String id){
+     idFu=id;   
+    }
+        
     private void jMIFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFuncionarioActionPerformed
        
     }//GEN-LAST:event_jMIFuncionarioActionPerformed
