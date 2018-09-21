@@ -31,6 +31,37 @@ public class ConductorDAO {
             System.err.println(e);
         }
     }
+        
+        public ArrayList<String> buscarConductorID(){
+        PreparedStatement pstmt;
+        ResultSet resultado;
+       ArrayList<String> iD;
+       iD= new ArrayList<>();
+        try {
+            pstmt=conexion.prepareStatement(
+            "select id_cond from conductor");
+            
+            
+            resultado=pstmt.executeQuery();
+                            
+            while (resultado.next() == true) {
+              
+	    iD.add(resultado.getString("id_cond"));
+            
+	}
+        return iD;                   
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,
+					"No se realizo la busqueda\n" + ex,
+					"mensaje Error", JOptionPane.ERROR_MESSAGE);
+			
+        }
+	return null;
+	
+        
+    }
+        
         public ArrayList<String> buscarConductor(){
          PreparedStatement pstm;
          ResultSet resultado;

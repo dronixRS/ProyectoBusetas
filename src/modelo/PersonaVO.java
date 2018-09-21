@@ -12,17 +12,16 @@ import java.util.Date;
  * @author Usuario
  */
 public class PersonaVO {
-    String identificacion,nombre,apellido,celular,correo,direccion,id_func;
+    String identificacion,nombre,apellido,celular,correo,direccion;
     boolean estado;
 
-    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, String id_func, boolean estado) {
+    public PersonaVO(String identificacion, String nombre, String apellido, String celular, String correo, String direccion, boolean estado) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
         this.correo = correo;
         this.direccion = direccion;
-        this.id_func = id_func;
         this.estado = estado;
     }
 
@@ -74,14 +73,6 @@ public class PersonaVO {
         this.direccion = direccion;
     }
 
-    public String getId_func() {
-        return id_func;
-    }
-
-    public void setId_func(String id_func) {
-        this.id_func = id_func;
-    }
-
     public boolean isEstado() {
         return estado;
     }
@@ -89,8 +80,8 @@ public class PersonaVO {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-        
-        
+
+    
    
     }
 

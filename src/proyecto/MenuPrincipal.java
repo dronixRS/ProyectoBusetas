@@ -107,6 +107,11 @@ String idFu;
         jMenu1.add(jMIAsistente);
 
         jMIVehiculo.setText("Ingreso Vehiculo");
+        jMIVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIVehiculoActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMIVehiculo);
 
         jMenuBar1.add(jMenu1);
@@ -160,9 +165,18 @@ String idFu;
     }
         
     private void jMIFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFuncionarioActionPerformed
-       
+Funcionario miUsuario = new Funcionario();
+        miUsuario.setVisible(true);       
     }//GEN-LAST:event_jMIFuncionarioActionPerformed
 
+    private void jMIVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVehiculoActionPerformed
+        Vehiculo miUsuario = new Vehiculo();
+        miUsuario.setVisible(true);
+        miUsuario.obIDFunc(idFu);
+    }//GEN-LAST:event_jMIVehiculoActionPerformed
+
+    
+        
     /**
      * @param args the command line arguments
      */
