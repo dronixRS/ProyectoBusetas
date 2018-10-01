@@ -5,12 +5,24 @@
  */
 package proyecto;
 
+import com.opencsv.CSVReader;
+import java.awt.Image;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Usuario
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 String idFu;
+private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV (MS-DOS)","CSV (Macintosh)");
     /**
      * Creates new form MenuPrincipal
      */
@@ -39,6 +51,7 @@ String idFu;
         jMIConductor = new javax.swing.JMenuItem();
         jMIAsistente = new javax.swing.JMenuItem();
         jMIVehiculo = new javax.swing.JMenuItem();
+        jMIRegEstExc = new javax.swing.JMenuItem();
         jMRuta = new javax.swing.JMenu();
         jMConsulta = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -114,6 +127,14 @@ String idFu;
         });
         jMenu1.add(jMIVehiculo);
 
+        jMIRegEstExc.setText("Ingreso Registro De Estudiante");
+        jMIRegEstExc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIRegEstExcActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMIRegEstExc);
+
         jMenuBar1.add(jMenu1);
 
         jMRuta.setText("Ruta");
@@ -175,7 +196,48 @@ Funcionario miUsuario = new Funcionario();
         miUsuario.obIDFunc(idFu);
     }//GEN-LAST:event_jMIVehiculoActionPerformed
 
-    
+    private void jMIRegEstExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRegEstExcActionPerformed
+        
+    }//GEN-LAST:event_jMIRegEstExcActionPerformed
+
+//    public ArrayList cargarCSV() {
+//        
+//        //crea un objeto filechooser
+//        JFileChooser dlg = new JFileChooser();
+//        //del objeto creado vamos a llamar el metodo setFileFilter
+//        dlg.setFileFilter(filter);
+//        //abrimos la ventana de dialogo para escoger imagenes
+//        int opcion = dlg.showOpenDialog(this);
+//        //si hacemos clic en boton abrir
+//        if (opcion == JFileChooser.APPROVE_OPTION) {
+//            //obtener el nombre del archivo que hemos seleccionado
+//            String fil = dlg.getSelectedFile().getPath();
+//            //obtener la direccion donde se guarda la imagen
+//            String file = dlg.getSelectedFile().toString();
+//            
+//            try {
+//                CSVReader csvReader = new CSVReader(new FileReader(file));
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+////           String archCSV = "D:\\ISO-Codes.csv";
+////CSVReader csvReader = new CSVReader(new FileReader(archCSV));
+////String[] fila = null;
+////while((fila = csvReader.readNext()) != null) {
+////    System.out.println(fila[0]
+////              + " | " + fila[1]
+////              + " |  " + fila[2]);
+////}
+////
+////csvReader.close();
+//            while((fila = csvReader.readNext()) != null) {
+//
+//}
+//            return newIcon;
+//            
+//        }
+//        return null;
+//    }
         
     /**
      * @param args the command line arguments
@@ -227,6 +289,7 @@ public void cerrarLicencia(){
     private javax.swing.JMenuItem jMIConductor;
     private javax.swing.JMenuItem jMIEstudiante;
     private javax.swing.JMenuItem jMIFuncionario;
+    private javax.swing.JMenuItem jMIRegEstExc;
     private javax.swing.JMenuItem jMIVehiculo;
     private javax.swing.JMenu jMRuta;
     private javax.swing.JMenu jMenu1;
