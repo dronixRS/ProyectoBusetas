@@ -110,6 +110,7 @@ private Connection conexion;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTFIdent = new javax.swing.JTextField();
@@ -145,6 +146,8 @@ private Connection conexion;
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         jBVerLin = new javax.swing.JButton();
 
+        jLabel11.setText("jLabel11");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingreso Conductor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
@@ -166,6 +169,17 @@ private Connection conexion;
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Celular:");
+
+        jTFCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFCelularActionPerformed(evt);
+            }
+        });
+        jTFCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCelularKeyTyped(evt);
+            }
+        });
 
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -248,10 +262,10 @@ private Connection conexion;
         jLabel111.setText("Imagen Licencia:");
 
         jCBCatLicen.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jCBCatLicen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3" }));
+        jCBCatLicen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Categoria:", "A1", "A2", "B1", "B2", "B3", "C1", "C2", "C3" }));
 
         jCBCiudadLicen.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jCBCiudadLicen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Armenia", "Bogota", "Cali", "Medellin", "Barranquilla", "Pasto" }));
+        jCBCiudadLicen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Ciudad:", "Armenia", "Bogota", "Cali", "Medellin", "Barranquilla", "Pasto", "Otra" }));
 
         jBImgLicen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jBImgLicen.setText("Cargar");
@@ -335,10 +349,12 @@ private Connection conexion;
                         .addComponent(jBImgLicen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBVerLin)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 712, Short.MAX_VALUE)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -548,14 +564,23 @@ if(guardarEditar==false){
             vigLin1=dateChooserCombo1.getSelectedDate();
             ciuLin= (String)(jCBCiudadLicen.getSelectedItem());
             restLin= jTFRestLicenCond.getText();
+            vigLin=vigLin1.getTime();
             fechaDC=formato.format(vigLin);
-            System.out.println(catLin);
+            String date = fechaDC;
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); // your template here
+            java.util.Date dateStr;
+             try {
+                 dateStr = formatter.parse(date);
+                 dateDB = new java.sql.Date(dateStr.getTime());
+             } catch (ParseException ex) {
+                 Logger.getLogger(Conductor.class.getName()).log(Level.SEVERE, null, ex);
+             }
             estado=true;
             transFuncionario = new ConductorVO(
-                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,vigLin, ciuLin, restLin,rutaFotoLinc,id_func,estado);
+                    ident, nombre, apellido, rutaFoto,  celular, correo, direccion,catLin,dateDB, ciuLin, restLin,rutaFotoLinc,id_func,estado);
             
             datosFuncionario.set(posicionUsuario,transFuncionario);
-//                       
+                       
             BDConductor.editarConductor(transFuncionario,id2);
             for (int i = jTConduc.getRowCount()-1; i >=0; i--) {
             modelo.removeRow(i);    
@@ -633,6 +658,19 @@ if(guardarEditar==false){
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTFCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCelularActionPerformed
+
+    private void jTFCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCelularKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }    }//GEN-LAST:event_jTFCelularKeyTyped
      
     public void verLicencia(){
         Licencia linc=new Licencia();
@@ -840,7 +878,7 @@ if(guardarEditar==false){
             dia=vigLin1.get(Calendar.DAY_OF_MONTH);
             mes=vigLin1.get(Calendar.MONTH);
             anio=vigLin1.get(Calendar.YEAR);
-            fecha= dia+"/"+(mes+1)+"/"+anio;
+            fecha= anio+"/"+(mes+1)+"/"+dia;
             
        }
        
@@ -917,7 +955,15 @@ if(guardarEditar==false){
             JOptionPane.showMessageDialog(null,
                     "Ingresar Restriccion de Licencia");
             return false;
-        }else {
+        }else if (jCBCatLicen.getSelectedItem().equals("Seleccionar Categoria:")) {
+            JOptionPane.showMessageDialog(null,
+                    "Seleccionar Marca");
+            return false;
+        }else if (jCBCiudadLicen.getSelectedItem().equals("Seleccionar Ciudad:")) {
+            JOptionPane.showMessageDialog(null,
+                    "Seleccionar Marca");
+            return false;
+        }  else {
             return true;
         }
     }
@@ -1076,6 +1122,7 @@ if(guardarEditar==false){
     private javax.swing.JLabel jLFoto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

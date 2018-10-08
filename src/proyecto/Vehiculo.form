@@ -360,6 +360,9 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBTipoVActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -424,11 +427,16 @@
         <Component class="javax.swing.JTextField" name="jTFSOAT">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="123"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFSOATActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFTecnomecanica">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="123"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jBNuevo">

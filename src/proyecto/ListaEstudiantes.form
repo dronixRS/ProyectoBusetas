@@ -45,7 +45,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="Liesta Estudiantes">
+            <TitledBorder justification="2" title="Lista Estudiantes">
               <Font PropertyName="font" name="Times New Roman" size="24" style="1"/>
             </TitledBorder>
           </Border>
@@ -60,9 +60,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" pref="566" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBBuscar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -77,8 +77,8 @@
                   <Component id="jScrollPane1" pref="449" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="jBBuscar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="jBSalir" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -93,7 +93,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jTLista">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -105,23 +105,26 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jBBuscar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cargar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBBuscarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBSalir">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

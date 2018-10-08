@@ -125,10 +125,10 @@ private Connection conexion;
     public void cargarTablaInicio(){
       String ver;
         
-        for (int i = 0; i < datosFuncionarioTabla.size(); i=i+15) {
+        for (int i = 0; i < datosFuncionarioTabla.size(); i=i+14) {
             ver=datosFuncionarioTabla.get(i+13);
             if (ver.equals("1")) {
-              String[] datos=new String[13];
+              String[] datos=new String[12];
             datos[0]=datosFuncionarioTabla.get(i);
             datos[1]=datosFuncionarioTabla.get(i+1);
             datos[2]=datosFuncionarioTabla.get(i+2);
@@ -140,6 +140,7 @@ private Connection conexion;
             datos[8]=datosFuncionarioTabla.get(i+8);
             datos[9]=datosFuncionarioTabla.get(i+9);
             datos[10]=datosFuncionarioTabla.get(i+10);
+            datos[11]=datosFuncionarioTabla.get(i+11);
             modelo.addRow(datos);  
             
             placa = datosFuncionarioTabla.get(i);
@@ -254,6 +255,11 @@ private Connection conexion;
 
         jCBTipoV.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jCBTipoV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones:", "Bus", "Buseta", "Micro-Bus" }));
+        jCBTipoV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBTipoVActionPerformed(evt);
+            }
+        });
 
         jCBConductor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jCBConductor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones:" }));
@@ -275,8 +281,15 @@ private Connection conexion;
         jCBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones:", "Mazda", "Renault" }));
 
         jTFSOAT.setEditable(false);
+        jTFSOAT.setText("123");
+        jTFSOAT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFSOATActionPerformed(evt);
+            }
+        });
 
         jTFTecnomecanica.setEditable(false);
+        jTFTecnomecanica.setText("123");
 
         jBNuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Desktop\\SENA\\img\\nuevo.png")); // NOI18N
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -535,7 +548,10 @@ private Connection conexion;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBCargarSoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarSoatActionPerformed
-        // TODO add your handling code here:
+
+JOptionPane.showInputDialog("Ingresar Codigo Soat:");
+
+
     }//GEN-LAST:event_jBCargarSoatActionPerformed
 
     private void jBCargarTecnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarTecnoActionPerformed
@@ -625,6 +641,14 @@ try {
         }
         
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jCBTipoVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTipoVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBTipoVActionPerformed
+
+    private void jTFSOATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFSOATActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFSOATActionPerformed
 
     public void buscarUsuarioElm(String busUsu) {
              boolean verificar = false;
@@ -916,7 +940,7 @@ try {
         jCBConductor.setEnabled(true);
         jCBAsistente.setEnabled(true);
         jTFSOAT.setEnabled(true);
-          jSCapacidad.setEnabled(true);
+        jSCapacidad.setEnabled(true);
         jTFTecnomecanica.setEnabled(true);
         jBFoto.setEnabled(true);
         jBGuardar.setEnabled(true);

@@ -1,9 +1,17 @@
+package proyecto;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+
+
+import controlador.EstudianteDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.EstudianteVO;
 
 /**
  *
@@ -11,13 +19,111 @@ package proyecto;
  */
 public class ListaEstudiantes extends javax.swing.JFrame {
 
+        DefaultTableModel modelo;
+        ArrayList<EstudianteVO> datosEstudiante;
+        ArrayList<String> datosEstudiantesTabla;
+    
+        EstudianteVO transEstudiante;
+
+        EstudianteDAO BDEstudiante;
+
+        String codigo,identificacion,nombre,apellido,celular,mail,direccion,grado,ciudad,nombreAcudiente,celularAcudiente,mailAcudiente,direccionAcudiente;
+        String id_func = "";
+
+        boolean estado;
     /**
      * Creates new form ListaEstudiantes
      */
     public ListaEstudiantes() {
         initComponents();
+        
+        BDEstudiante= new EstudianteDAO();
+        datosEstudiante= new ArrayList<EstudianteVO>();
+        datosEstudiantesTabla= new ArrayList<String>();
+        datosEstudiantesTabla=BDEstudiante.buscarEstudiante();
+        
+        
+        
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Identificacion");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("celular");
+        modelo.addColumn("Mail");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Grado");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Nom.Acudi");
+        modelo.addColumn("Cel.Acudi");
+        modelo.addColumn("Mail.Acudi");
+        modelo.addColumn("Direc.Acudiente");
+       
+        this.jTLista.setModel(modelo);
+        this.jTLista.getColumn(jTLista.getColumnName(0)).setMaxWidth(80);
+        this.jTLista.getColumn(jTLista.getColumnName(2)).setMaxWidth(80);
+        this.jTLista.getColumn(jTLista.getColumnName(4)).setMaxWidth(80);
+        this.jTLista.getColumn(jTLista.getColumnName(5)).setMaxWidth(50);
+        
+        cargarTablaInicio();
     }
 
+    
+    public void cargarTablaInicio(){
+        
+        String ver;
+        
+        for (int i = 0; i < datosEstudiantesTabla.size();i=i+14) {
+            
+            ver=datosEstudiantesTabla.get(i+13);
+            
+            if(ver.equals("1")){
+                
+            String[] datos=new String[13];
+            datos[0]=datosEstudiantesTabla.get(i);
+            datos[1]=datosEstudiantesTabla.get(i+1);
+            datos[2]=datosEstudiantesTabla.get(i+2);
+            datos[3]=datosEstudiantesTabla.get(i+3);
+            datos[4]=datosEstudiantesTabla.get(i+4);
+            datos[5]=datosEstudiantesTabla.get(i+5);
+            datos[6]=datosEstudiantesTabla.get(i+6);
+            datos[7]=datosEstudiantesTabla.get(i+7);
+            datos[8]=datosEstudiantesTabla.get(i+8);
+            datos[9]=datosEstudiantesTabla.get(i+9);
+            datos[10]=datosEstudiantesTabla.get(i+10);
+            datos[11]=datosEstudiantesTabla.get(i+11);
+            datos[12]=datosEstudiantesTabla.get(i+12);
+            
+            modelo.addRow(datos);
+            
+            
+        codigo=datosEstudiantesTabla.get(i);
+        identificacion= datosEstudiantesTabla.get(i+1);
+        nombre= datosEstudiantesTabla.get(i+2);
+        apellido= datosEstudiantesTabla.get(i+3);
+        celular= datosEstudiantesTabla.get(i+4);
+        mail= datosEstudiantesTabla.get(i+5);
+        direccion= datosEstudiantesTabla.get(i+6);
+        grado= datosEstudiantesTabla.get(i+7);
+        ciudad= datosEstudiantesTabla.get(i+8);
+        nombreAcudiente= datosEstudiantesTabla.get(i+9);
+        celularAcudiente= datosEstudiantesTabla.get(i+10);
+        mailAcudiente= datosEstudiantesTabla.get(i+11);
+        direccionAcudiente= datosEstudiantesTabla.get(i+12);
+        
+        estado=true;
+        
+        transEstudiante = new EstudianteVO(codigo,identificacion,nombre,apellido,celular,mail,direccion,grado,ciudad,nombreAcudiente,celularAcudiente,mailAcudiente,direccionAcudiente,id_func,estado);
+        datosEstudiante.add(transEstudiante); 
+            
+            
+        }
+        }               
+ }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,16 +135,16 @@ public class ListaEstudiantes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTLista = new javax.swing.JTable();
+        jBBuscar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liesta Estudiantes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista Estudiantes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTLista.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jTLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -49,16 +155,21 @@ public class ListaEstudiantes extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTLista);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Cargar");
-
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBBuscar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBBuscarActionPerformed(evt);
+            }
+        });
+
+        jBSalir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
             }
         });
 
@@ -71,9 +182,9 @@ public class ListaEstudiantes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jBBuscar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(jBSalir)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -84,8 +195,8 @@ public class ListaEstudiantes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -109,10 +220,69 @@ public class ListaEstudiantes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
 
+    dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+
+    try  {
+                String buscarCodigoEstu = JOptionPane.showInputDialog("ingrese codigo para buscar");
+                buscarCodigo(buscarCodigoEstu);
+           }catch(Exception n){
+                       System.err.println(n);
+
+           }
+        
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    
+    public void buscarCodigo(String busCodi){
+    
+    boolean verificarCodigo=false;
+    
+    if(datosEstudiante.isEmpty()){
+                JOptionPane.showMessageDialog(null, "No hay codigo Registrados");
+    }else{
+    
+        for (int i = 0; i < datosEstudiante.size(); i++) {
+            
+            if(datosEstudiante.get(i).getCodigo().equals(busCodi)){
+            
+                        verificarCodigo=true;
+                
+                        JOptionPane.showMessageDialog(null, "informacion estudiante: \n codigo: "
+                        +datosEstudiante.get(i).getCodigo()+"\n identificacion: "
+                        +datosEstudiante.get(i).getIdentificacion()+"\n nombre: "
+                        +datosEstudiante.get(i).getNombre()+"\n apellido: "
+                        +datosEstudiante.get(i).getApellido()+"\n celular: "
+                        +datosEstudiante.get(i).getCelular()+"\n mail: "
+                        +datosEstudiante.get(i).getCorreo()+"\n direccion: "
+                        +datosEstudiante.get(i).getDireccion()+"\n grado: "
+                        +datosEstudiante.get(i).getGrado()+"\n ciudad: "
+                        +datosEstudiante.get(i).getCiudad()+"\n nombre acudiente: "
+                        +datosEstudiante.get(i).getNombreAcudiente()+"\n celular acudiente: "
+                        +datosEstudiante.get(i).getCelularAcudiente()+"\n mail acudiente: "
+                        +datosEstudiante.get(i).getMailAcudiente()+"\n direccion acudiente: "
+                        +datosEstudiante.get(i).getDireccionAcudiente());
+                
+                
+            }
+            
+        }
+        
+        if(verificarCodigo==false){
+                JOptionPane.showMessageDialog(null, "codigo Incorrecto");
+        }
+        verificarCodigo=false;
+        
+    }
+        
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -149,10 +319,10 @@ public class ListaEstudiantes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBBuscar;
+    private javax.swing.JButton jBSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTLista;
     // End of variables declaration//GEN-END:variables
 }

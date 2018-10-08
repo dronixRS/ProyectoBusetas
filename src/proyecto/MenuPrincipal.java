@@ -7,14 +7,19 @@ package proyecto;
 
 import com.opencsv.CSVReader;
 import java.awt.Image;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import modelo.ConductorVO;
 
 /**
  *
@@ -26,6 +31,9 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
     /**
      * Creates new form MenuPrincipal
      */
+    String  codigo, ident, nombre, apellido, celular,correo, direccion, grado, ciudad, nomAcu,celAcu,corrAcu,DirecAcu;
+  ArrayList<ConductorVO> datosFuncionario;
+    ConductorVO transFuncionario;
     public MenuPrincipal() {
         initComponents();
     }
@@ -52,6 +60,7 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMIAsistente = new javax.swing.JMenuItem();
         jMIVehiculo = new javax.swing.JMenuItem();
         jMIRegEstExc = new javax.swing.JMenuItem();
+        jMISoat = new javax.swing.JMenuItem();
         jMRuta = new javax.swing.JMenu();
         jMConsulta = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -135,6 +144,14 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         });
         jMenu1.add(jMIRegEstExc);
 
+        jMISoat.setText("Ingreso SOAT");
+        jMISoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISoatActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMISoat);
+
         jMenuBar1.add(jMenu1);
 
         jMRuta.setText("Ruta");
@@ -163,7 +180,9 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMIAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAseguradoraActionPerformed
-        // TODO add your handling code here:
+    Aseguradora miUsuario = new Aseguradora();
+        miUsuario.setVisible(true);
+        miUsuario.obIDFunc(idFu);
     }//GEN-LAST:event_jMIAseguradoraActionPerformed
 
     private void jMIEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEstudianteActionPerformed
@@ -197,10 +216,17 @@ Funcionario miUsuario = new Funcionario();
     }//GEN-LAST:event_jMIVehiculoActionPerformed
 
     private void jMIRegEstExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRegEstExcActionPerformed
-        
+//        cargarCSV();
     }//GEN-LAST:event_jMIRegEstExcActionPerformed
 
-//    public ArrayList cargarCSV() {
+    private void jMISoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISoatActionPerformed
+      
+        SOAT miUsuario = new SOAT();
+        miUsuario.setVisible(true);
+        miUsuario.obIDFunc(idFu);
+    }//GEN-LAST:event_jMISoatActionPerformed
+
+//    public void cargarCSV() {
 //        
 //        //crea un objeto filechooser
 //        JFileChooser dlg = new JFileChooser();
@@ -215,30 +241,26 @@ Funcionario miUsuario = new Funcionario();
 //            //obtener la direccion donde se guarda la imagen
 //            String file = dlg.getSelectedFile().toString();
 //            
-//            try {
-//                CSVReader csvReader = new CSVReader(new FileReader(file));
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-////           String archCSV = "D:\\ISO-Codes.csv";
-////CSVReader csvReader = new CSVReader(new FileReader(archCSV));
-////String[] fila = null;
-////while((fila = csvReader.readNext()) != null) {
-////    System.out.println(fila[0]
-////              + " | " + fila[1]
-////              + " |  " + fila[2]);
-////}
-////
-////csvReader.close();
-//            while((fila = csvReader.readNext()) != null) {
 //
-//}
-//            return newIcon;
-//            
-//        }
-//        return null;
+//        try (FileInputStream fis = new FileInputStream(file);
+//                InputStreamReader isr = new InputStreamReader(fis, 
+//                        StandardCharsets.UTF_8);
+//                CSVReader reader = new CSVReader(isr)) {
+//            String[] nextLine;
+//
+//            while ((reader) != null) {
+//                
+//                nextLine=reader.readNext();
+//                
+//                            transFuncionario = new E(codigo, ident, nombre, apellido, celular,correo, direccion, grado, ciudad, nomAcu,celAcu,corrAcu,DirecAcu);
+//            datosFuncionario.add(transFuncionario);
+//                
+//
 //    }
-        
+//    } catch (Exception e) {
+//            }
+//        }
+//    }
     /**
      * @param args the command line arguments
      */
@@ -290,6 +312,7 @@ public void cerrarLicencia(){
     private javax.swing.JMenuItem jMIEstudiante;
     private javax.swing.JMenuItem jMIFuncionario;
     private javax.swing.JMenuItem jMIRegEstExc;
+    private javax.swing.JMenuItem jMISoat;
     private javax.swing.JMenuItem jMIVehiculo;
     private javax.swing.JMenu jMRuta;
     private javax.swing.JMenu jMenu1;
