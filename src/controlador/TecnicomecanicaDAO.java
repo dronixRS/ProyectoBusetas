@@ -34,7 +34,35 @@ public class TecnicomecanicaDAO {
             System.err.println(e);
         }
     }
-    
+    public ArrayList<String> buscarConductorID(){
+        PreparedStatement pstmt;
+        ResultSet resultado;
+       ArrayList<String> iD;
+       iD= new ArrayList<>();
+        try {
+            pstmt=conexion.prepareStatement(
+            "select codigo_tecno from tecnomecanica");
+            
+            
+            resultado=pstmt.executeQuery();
+                            
+            while (resultado.next() == true) {
+              
+	    iD.add(resultado.getString("codigo_tecno"));
+            
+	}
+        return iD;                   
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,
+					"No se realizo la busqueda\n" + ex,
+					"mensaje Error", JOptionPane.ERROR_MESSAGE);
+			
+        }
+	return null;
+	
+        
+    }
        public ArrayList<String> buscarCodigoTecnicomecanica(){
         PreparedStatement pstmt;
         ResultSet resultado;

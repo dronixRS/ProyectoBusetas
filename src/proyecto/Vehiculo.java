@@ -9,6 +9,8 @@ import com.sun.xml.internal.fastinfoset.EncodingConstants;
 import controlador.AsistenteDAO;
 import controlador.ConductorDAO;
 import controlador.Conexion;
+import controlador.SOATDAO;
+import controlador.TecnicomecanicaDAO;
 import controlador.VehiculoDAO;
 import java.awt.Color;
 import java.awt.Image;
@@ -62,7 +64,7 @@ private Connection conexion;
     ArrayList<String> conductores_id;
     ArrayList<String> asistentes_id;
     String fecha;
-    
+     String asis="", cond="";
     /**
      * Creates new form Vehiculo
      */
@@ -111,11 +113,11 @@ private Connection conexion;
          cargarJCB();
     }
     public void cargarJCB(){
-         for (int i = 0; i < asistentes_id.size(); i++) {
-            jCBAsistente.addItem((asistentes_id.get(i)));
+         for (int i = 0; i < asistentes_id.size(); i=i+3) {
+            jCBAsistente.addItem((asistentes_id.get(i+1)));
         }
-         for (int i = 0; i < conductores_id.size(); i++) {
-            jCBConductor.addItem((conductores_id.get(i)));
+         for (int i = 0; i < conductores_id.size(); i=i+3) {
+            jCBConductor.addItem((conductores_id.get(i+1)));
         }
     }
     public void obIDFunc(String id){
@@ -128,19 +130,31 @@ private Connection conexion;
         for (int i = 0; i < datosFuncionarioTabla.size(); i=i+14) {
             ver=datosFuncionarioTabla.get(i+13);
             if (ver.equals("1")) {
-              String[] datos=new String[12];
+               
+                    
+                     for (int k = 0; k < conductores_id.size(); k=k+3) {
+                 if ((datosFuncionarioTabla.get(i+8)).equals(conductores_id.get(k))) {
+                     cond=(conductores_id.get(k+1));
+                 }
+             }
+                        for (int k = 0; k < asistentes_id.size(); k=k+3) {
+                 if ((datosFuncionarioTabla.get(i+9)).equals(asistentes_id.get(k))) {
+                     asis=(asistentes_id.get(k+1));
+                 }
+             }
+            
+              String[] datos=new String[11];
             datos[0]=datosFuncionarioTabla.get(i);
             datos[1]=datosFuncionarioTabla.get(i+1);
             datos[2]=datosFuncionarioTabla.get(i+2);
             datos[3]=datosFuncionarioTabla.get(i+3);
             datos[4]=datosFuncionarioTabla.get(i+4);
             datos[5]=datosFuncionarioTabla.get(i+5);
-            datos[6]=datosFuncionarioTabla.get(i+6);
-            datos[7]=datosFuncionarioTabla.get(i+7);
-            datos[8]=datosFuncionarioTabla.get(i+8);
-            datos[9]=datosFuncionarioTabla.get(i+9);
-            datos[10]=datosFuncionarioTabla.get(i+10);
-            datos[11]=datosFuncionarioTabla.get(i+11);
+            datos[6]=datosFuncionarioTabla.get(i+6);;
+            datos[7]=cond;
+            datos[8]=asis;
+            datos[9]=datosFuncionarioTabla.get(i+10);
+            datos[10]=datosFuncionarioTabla.get(i+11);
             modelo.addRow(datos);  
             
             placa = datosFuncionarioTabla.get(i);
@@ -151,22 +165,23 @@ private Connection conexion;
             empresa = datosFuncionarioTabla.get(i+5);
             marca = datosFuncionarioTabla.get(i+6);
             ruta_foto= datosFuncionarioTabla.get(i+7);
-            conductor= datosFuncionarioTabla.get(i+8);
-            asistente= datosFuncionarioTabla.get(i+9);
+            
             soat=datosFuncionarioTabla.get(i+10);
             tecnoM= datosFuncionarioTabla.get(i+11);
            estado=true;
+               
+            
              
             
              
-            transFuncionario = new VehiculoVO(placa,numero, model, tipo_vehiculo,capacidad, empresa, marca,ruta_foto, conductor, asistente, soat, tecnoM,id_func, estado);
+            transFuncionario = new VehiculoVO(placa,numero, model, tipo_vehiculo,capacidad, empresa, marca,ruta_foto, cond, asis, soat, tecnoM,id_func, estado);
             datosFuncionario.add(transFuncionario);
             
             }
             
         }
        
- }
+        }
     
 
     /**
@@ -390,15 +405,15 @@ private Connection conexion;
                                     .addComponent(jLabel8))
                                 .addGap(15, 15, 15)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCBTipoV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCBTipoV, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jTFEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jCBMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, 175, Short.MAX_VALUE)
-                                                .addComponent(jCBConductor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jSCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTFEmpresa, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCBMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, 175, Short.MAX_VALUE)
+                                            .addComponent(jCBConductor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBBuscarConduc))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -408,29 +423,15 @@ private Connection conexion;
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTFModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTFPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(77, 77, 77)
-                                .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(55, 55, 55)
-                                .addComponent(jCBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBBuscarAsis)
-                                    .addComponent(jBBuscarConduc)
-                                    .addComponent(jBCargarSoat)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jBFoto)))
-                        .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBFoto)
+                                .addGap(67, 67, 67))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -448,11 +449,23 @@ private Connection conexion;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(77, 77, 77)
+                                .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCargarSoat))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(55, 55, 55)
+                                .addComponent(jCBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBBuscarAsis)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -461,6 +474,7 @@ private Connection conexion;
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -477,42 +491,45 @@ private Connection conexion;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jCBTipoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jSCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBFoto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTFEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jCBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jCBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBBuscarConduc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jCBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBBuscarAsis))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCargarSoat))
+                                    .addComponent(jCBTipoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jSCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTFEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jCBMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jCBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBBuscarConduc))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jCBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBBuscarAsis))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBCargarSoat)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBFoto)
+                                .addGap(234, 234, 234)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jTFTecnomecanica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBCargarTecno))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -531,10 +548,10 @@ private Connection conexion;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,16 +565,54 @@ private Connection conexion;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBCargarSoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarSoatActionPerformed
-
-JOptionPane.showInputDialog("Ingresar Codigo Soat:");
-
+        String so;
+        
+        so=JOptionPane.showInputDialog("Ingresar Codigo Soat:");
+        buscarSoat(so);
 
     }//GEN-LAST:event_jBCargarSoatActionPerformed
 
+    public void buscarSoat(String so){
+     boolean verr=false;
+        ArrayList<String> soatt;
+        SOATDAO soo= new SOATDAO();
+        soatt= soo.buscarConductorID();
+        for (int i = 0; i < soatt.size(); i++) {
+            if(so.equals(soatt.get(i))){
+                jTFSOAT.setText(so);
+                verr=true;
+            }
+        }
+        if(verr==false){
+           JOptionPane.showMessageDialog(null, "Codigo De Tecnomecanica Incorrecto");
+        }
+    }
+    
+    
+    
     private void jBCargarTecnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarTecnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBCargarTecnoActionPerformed
+    String so;
+        
+        so=JOptionPane.showInputDialog("Ingresar Codigo Soat:");
+        
+        buscarTecno(so);
 
+    }//GEN-LAST:event_jBCargarTecnoActionPerformed
+public void buscarTecno(String so){
+    boolean verr=false;
+        ArrayList<String> soatt;
+        TecnicomecanicaDAO soo= new TecnicomecanicaDAO();
+        soatt= soo.buscarConductorID();
+        for (int i = 0; i < soatt.size(); i++) {
+            if(so.equals(soatt.get(i))){
+                jTFTecnomecanica.setText(so);
+                verr=true;
+            }
+        }
+        if(verr==false){
+           JOptionPane.showMessageDialog(null, "Codigo De Tecnomecanica Incorrecto");
+        }
+    }
     private void jBFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFotoActionPerformed
        jLFoto.setIcon(cargarFoto());
     }//GEN-LAST:event_jBFotoActionPerformed
@@ -633,7 +688,7 @@ try {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
 
   try {
-            String buscaIdent = JOptionPane.showInputDialog("Ingresar identificacion para eliminar");
+            String buscaIdent = JOptionPane.showInputDialog("Ingresar placa para eliminar");
             //se llama el metodo buscarUsuarioEditar y se envia la variable buscaident la cual posee la identificacion
             buscarUsuarioElm(buscaIdent);
         } catch (Exception e) {
@@ -670,6 +725,11 @@ try {
             }
                      
                     for (int j = 0; j < datosFuncionario.size(); j++) {
+                        
+                        
+                        
+             
+             
                 String[] datos = new String[11];
         datos[0] = datosFuncionario.get(j).getPlaca();
         datos[1] = Integer.toString(datosFuncionario.get(j).getNumero());
@@ -678,8 +738,21 @@ try {
         datos[4] = Integer.toString(datosFuncionario.get(j).getCapacidad());
         datos[5] = datosFuncionario.get(j).getEmpresa();
         datos[6] = datosFuncionario.get(j).getMarca();
-        datos[7] = datosFuncionario.get(j).getId_cond();
-        datos[8] = datosFuncionario.get(j).getId_asis();
+        
+        for (int k = 0; k < conductores_id.size(); k=k+3) {
+                 if ((datosFuncionario.get(j).getId_cond()).equals(conductores_id.get(k))) {
+                     cond=(conductores_id.get(k+1));
+                 }
+             }
+             
+        datos[7] =cond; 
+        
+        for (int k = 0; k < asistentes_id.size(); k=k+3) {
+                 if ((datosFuncionario.get(j).getId_asis()).equals(asistentes_id.get(k))) {
+                     asis=(asistentes_id.get(k+1));
+                 }
+             }
+        datos[8] = asis;
         datos[9] = datosFuncionario.get(j).getCod_SOAT();
         datos[10] = datosFuncionario.get(j).getCod_tecno();
         modelo.addRow(datos);
@@ -707,7 +780,18 @@ try {
                     "No hay Usuarios Registrados");
         } else {
             for (int i = 0; i < datosFuncionario.size(); i++) {
-
+                
+                        for (int j = 0; j < asistentes_id.size(); j=j+3) {
+                 if ((datosFuncionario.get(i).getId_asis()).equals(asistentes_id.get(j))) {
+                     asis=(asistentes_id.get(j+1));
+                 }
+             }
+             for (int k = 0; k < conductores_id.size(); k=k+3) {
+                 if ((datosFuncionario.get(i).getId_cond()).equals(conductores_id.get(k))) {
+                     cond=(conductores_id.get(k+1));
+                 }
+             }
+                
                 if (datosFuncionario.get(i).getPlaca().equals(busUsu)) {
                     verificarUsu = true;
                     JOptionPane.showMessageDialog(null,
@@ -718,9 +802,9 @@ try {
                             +datosFuncionario.get(i).getTipo()+"\nCapacidad: "
                             +datosFuncionario.get(i).getCapacidad()+"\nEmpresa: "
                             +datosFuncionario.get(i).getEmpresa()+"\nMarca: "        
-                            +datosFuncionario.get(i).getMarca()+"\nIdentificaciond Del Conductor: "
-                            +datosFuncionario.get(i).getId_cond()+"\nIdentificacion De La Asistente: "
-                            +datosFuncionario.get(i).getId_asis()+"\nCodigo Del Soat: "
+                            +datosFuncionario.get(i).getMarca()+"\nConductor: "
+                            +cond+"\nAsistente: "
+                            +asis+"\nCodigo Del Soat: "
                             +datosFuncionario.get(i).getCod_SOAT()+"\nCodigo De La Tecnomecanica: "
                             +datosFuncionario.get(i).getCod_tecno());        
                            
@@ -785,18 +869,29 @@ try {
             numero = Integer.parseInt(jTFNumero.getText());
             model = jTFModelo.getText();
             tipo_vehiculo = (String)(jCBTipoV.getSelectedItem());
-            capacidad = Integer.parseInt((String)(jSCapacidad.getValue()));
+            capacidad = Integer.parseInt(jSCapacidad.getValue().toString());
             empresa = jTFEmpresa.getText();
             marca= (String)(jCBTipoV.getSelectedItem());
-            conductor= (String)(jCBTipoV.getSelectedItem());
-            asistente= (String)(jCBTipoV.getSelectedItem());
+            conductor= (String)(jCBConductor.getSelectedItem());
+            System.out.println(conductor);
+            asistente= (String)(jCBAsistente.getSelectedItem());
             tecnoM=jTFTecnomecanica.getText();
             soat=jTFSOAT.getText();
             estado=true;
              
-            
-             
-            transFuncionario = new VehiculoVO(placa,numero,model, tipo_vehiculo,capacidad,empresa, marca,ruta_foto,conductor, asistente, soat, tecnoM,id_func, estado);
+             for (int i = 0; i < asistentes_id.size(); i=i+3) {
+                 if (asistente.equals(asistentes_id.get(i+1))) {
+                     asis=(asistentes_id.get(i));
+                 }
+             }
+             for (int i = 0; i < conductores_id.size(); i=i+3) {
+                 if (conductor.equals(conductores_id.get(i+1))) {
+                     cond=(conductores_id.get(i));
+                 }
+             }
+             System.out.println("el Conductor es:" +cond);
+              System.out.println("la Asistente es:" +asis);
+            transFuncionario = new VehiculoVO(placa,numero,model, tipo_vehiculo,capacidad,empresa, marca,ruta_foto,cond, asis, soat, tecnoM,id_func, estado);
          
             datosFuncionario.set(posicionUsuario,transFuncionario);
                   
@@ -806,7 +901,7 @@ try {
             }
                            
             for (int i = 0; i < datosFuncionario.size(); i++) {
-                String[] datos = new String[9];
+                String[] datos = new String[11];
         datos[0] = datosFuncionario.get(i).getPlaca();
         datos[1] =Integer.toString(datosFuncionario.get(i).getNumero());
         datos[2] = datosFuncionario.get(i).getModelo();
@@ -816,8 +911,8 @@ try {
         datos[6] = datosFuncionario.get(i).getMarca();
         datos[7] = datosFuncionario.get(i).getId_cond();
         datos[8] = datosFuncionario.get(i).getId_asis();
-        datos[7] = datosFuncionario.get(i).getCod_SOAT();
-        datos[8] = datosFuncionario.get(i).getCod_tecno();
+        datos[9] = datosFuncionario.get(i).getCod_SOAT();
+        datos[10] = datosFuncionario.get(i).getCod_tecno();
        
       
         modelo.addRow(datos);
@@ -848,7 +943,7 @@ try {
     
     
       public void cargarTabla() {
-        String[] datos = new String[9];
+        String[] datos = new String[11];
         datos[0] = placa;
         datos[1] = Integer.toString(numero);
         datos[2] = model;
@@ -878,10 +973,20 @@ try {
             tecnoM=jTFTecnomecanica.getText();
             soat=jTFSOAT.getText();
             estado=true;
-             
             
+           
+             for (int i = 0; i < asistentes_id.size(); i=i+3) {
+                 if (asistente.equals(asistentes_id.get(i+1))) {
+                     asis=(asistentes_id.get(i));
+                 }
+             }
+             for (int i = 0; i < conductores_id.size(); i=i+3) {
+                 if (conductor.equals(conductores_id.get(i+1))) {
+                     cond=(conductores_id.get(i));
+                 }
+             }
              
-            transFuncionario = new VehiculoVO(placa,numero,model, tipo_vehiculo,capacidad,empresa, marca,ruta_foto,conductor, asistente, soat, tecnoM,id_func, estado);
+            transFuncionario = new VehiculoVO(placa,numero,model, tipo_vehiculo,capacidad,empresa, marca,ruta_foto,cond, asis, soat, tecnoM,id_func, estado);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
             BDConductor.ingresarConductor(transFuncionario);

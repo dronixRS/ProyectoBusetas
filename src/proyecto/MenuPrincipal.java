@@ -59,7 +59,6 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMIConductor = new javax.swing.JMenuItem();
         jMIAsistente = new javax.swing.JMenuItem();
         jMIVehiculo = new javax.swing.JMenuItem();
-        jMIRegEstExc = new javax.swing.JMenuItem();
         jMISoat = new javax.swing.JMenuItem();
         jMRuta = new javax.swing.JMenu();
         jMConsulta = new javax.swing.JMenu();
@@ -136,14 +135,6 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         });
         jMenu1.add(jMIVehiculo);
 
-        jMIRegEstExc.setText("Ingreso Registro De Estudiante");
-        jMIRegEstExc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIRegEstExcActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMIRegEstExc);
-
         jMISoat.setText("Ingreso SOAT");
         jMISoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,10 +205,6 @@ Funcionario miUsuario = new Funcionario();
         miUsuario.setVisible(true);
         miUsuario.obIDFunc(idFu);
     }//GEN-LAST:event_jMIVehiculoActionPerformed
-
-    private void jMIRegEstExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRegEstExcActionPerformed
-//        cargarCSV();
-    }//GEN-LAST:event_jMIRegEstExcActionPerformed
 
     private void jMISoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISoatActionPerformed
       
@@ -311,7 +298,6 @@ public void cerrarLicencia(){
     private javax.swing.JMenuItem jMIConductor;
     private javax.swing.JMenuItem jMIEstudiante;
     private javax.swing.JMenuItem jMIFuncionario;
-    private javax.swing.JMenuItem jMIRegEstExc;
     private javax.swing.JMenuItem jMISoat;
     private javax.swing.JMenuItem jMIVehiculo;
     private javax.swing.JMenu jMRuta;

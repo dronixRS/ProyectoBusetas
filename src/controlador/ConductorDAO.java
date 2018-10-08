@@ -32,6 +32,7 @@ public class ConductorDAO {
         }
     }
         
+        
         public ArrayList<String> buscarConductorID(){
         PreparedStatement pstmt;
         ResultSet resultado;
@@ -39,7 +40,7 @@ public class ConductorDAO {
        iD= new ArrayList<>();
         try {
             pstmt=conexion.prepareStatement(
-            "select id_cond from conductor");
+            "select id_cond, nombre_cond from conductor ");
             
             
             resultado=pstmt.executeQuery();
@@ -47,6 +48,7 @@ public class ConductorDAO {
             while (resultado.next() == true) {
               
 	    iD.add(resultado.getString("id_cond"));
+            iD.add(resultado.getString("nombre_cond"));
             
 	}
         return iD;                   

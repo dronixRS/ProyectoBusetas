@@ -126,7 +126,7 @@ public boolean ingresarConductor(VehiculoVO funcionario) {
             pstmt = conexion.prepareStatement("UPDATE vehiculo SET placa_veh=?, numero_veh=?,"
                     + " modelo_veh=?, tipo_veh=?, capacidad_veh=?, empresa_veh=?, marca_veh=?, ruta_foto_veh=?,"
                     + " id_cond=?, id_asis=?, cod_soat=?, cod_tecno=?"
-                    +" WHERE id_func= "+idd);
+                    +" WHERE placa_veh= "+idd);
         
        
         //asignar valores a los interrogantes
@@ -143,9 +143,6 @@ public boolean ingresarConductor(VehiculoVO funcionario) {
         pstmt.setString(10,funcionario.getId_asis());
         pstmt.setString(11,funcionario.getCod_SOAT());
         pstmt.setString(12,funcionario.getCod_tecno());
-        pstmt.setString(13,funcionario.getId_func());
-        pstmt.setBoolean(14,funcionario.isEstado());
-        
         pstmt.executeUpdate();
 
         
@@ -167,8 +164,8 @@ public boolean ingresarConductor(VehiculoVO funcionario) {
         PreparedStatement pstmt;
         try {
             //codigo para el ingreso de datos en MySQL
-            pstmt = conexion.prepareStatement("UPDATE vehiculo SET estado_func=0"
-                    +" WHERE id_func="+idd);
+            pstmt = conexion.prepareStatement("UPDATE vehiculo SET estado_veh=0"
+                    +" WHERE placa_veh="+idd);
         
      
         //asignar valores a los interrogantes

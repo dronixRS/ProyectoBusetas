@@ -535,13 +535,14 @@ try {
                     "No hay Usuarios Registrados");
         } else {
             for (int i = 0; i < datosFuncionario.size(); i++) {
-                String aseg="";
+                
+                if (datosFuncionario.get(i).getCodigoSoat().equals(busUsu)) {
+                    String aseg="";
                 for (int j = 0; j < asegurador.size(); j=j+3) {
-                 if (aseguradora.equals(asegurador.get(j))) {
+                 if ((datosFuncionario.get(i).getAseguradora()+"").equals(asegurador.get(j))) {
                      aseg=(asegurador.get(j+1));
                  }
              }
-                if (datosFuncionario.get(i).getCodigoSoat().equals(busUsu)) {
                     verificarUsu = true;
                     JOptionPane.showMessageDialog(null,
                             "Información de Usuario:\nCodigo Soat: "
@@ -707,7 +708,7 @@ try {
         }
     }
     public void cargarTabla() {
-        String[] datos = new String[9];
+        String[] datos = new String[4];
         datos[0] = codigo;
         datos[1] = aseguradora;
         datos[2] = fechaDC;
@@ -751,7 +752,7 @@ try {
     public boolean guardarDatos(){
          if (validarCajas() == true) {
            codigo = jTfCodigo.getText();
-            aseguradora = String.valueOf(jCBAseguradora.getSelectedItem());
+            aseguradora = (String)(jCBAseguradora.getSelectedItem());
            
             vigLin1= (dateChooserCombo1.getSelectedDate());
             vigLin=vigLin1.getTime();

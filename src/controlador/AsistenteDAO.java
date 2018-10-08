@@ -39,14 +39,15 @@ public class AsistenteDAO {
         }
     }
     
-     public ArrayList<String> buscarConductorID(){
+    
+        public ArrayList<String> buscarConductorID(){
         PreparedStatement pstmt;
         ResultSet resultado;
        ArrayList<String> iD;
        iD= new ArrayList<>();
         try {
             pstmt=conexion.prepareStatement(
-            "select id_asis from asistente");
+            "select id_asis, nombre_asis from asistente ");
             
             
             resultado=pstmt.executeQuery();
@@ -54,8 +55,7 @@ public class AsistenteDAO {
             while (resultado.next() == true) {
               
 	    iD.add(resultado.getString("id_asis"));
-            
-            
+            iD.add(resultado.getString("nombre_asis"));
             
 	}
         return iD;                   
