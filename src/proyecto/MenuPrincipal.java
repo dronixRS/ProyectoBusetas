@@ -5,7 +5,8 @@
  */
 package proyecto;
 
-import com.opencsv.CSVReader;
+//import com.opencsv.CSVReader;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,6 +37,7 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
     ConductorVO transFuncionario;
     public MenuPrincipal() {
         initComponents();
+        
     }
 
     /**
@@ -51,6 +53,19 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jBVehiculo = new javax.swing.JButton();
+        jBConductor = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jBAseguradora = new javax.swing.JButton();
+        jBAsistente = new javax.swing.JButton();
+        jBFuncionario = new javax.swing.JButton();
+        jBEstudiante = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jBAsistente1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMIFuncionario = new javax.swing.JMenuItem();
@@ -62,7 +77,6 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMISoat = new javax.swing.JMenuItem();
         jMRuta = new javax.swing.JMenu();
         jMConsulta = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
 
@@ -84,6 +98,96 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel1.setText("vehiculo");
+
+        jBVehiculo.setBackground(new java.awt.Color(255, 255, 255));
+        jBVehiculo.setForeground(new java.awt.Color(255, 255, 255));
+        jBVehiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bus.png"))); // NOI18N
+        jBVehiculo.setBorder(null);
+        jBVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVehiculoActionPerformed(evt);
+            }
+        });
+
+        jBConductor.setBackground(new java.awt.Color(255, 255, 255));
+        jBConductor.setForeground(new java.awt.Color(255, 255, 255));
+        jBConductor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/conductor.png"))); // NOI18N
+        jBConductor.setBorder(null);
+        jBConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConductorActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel2.setText("conductor");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel3.setText("aseguradora");
+
+        jBAseguradora.setBackground(new java.awt.Color(255, 255, 255));
+        jBAseguradora.setForeground(new java.awt.Color(255, 255, 255));
+        jBAseguradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aseguradora.png"))); // NOI18N
+        jBAseguradora.setBorder(null);
+        jBAseguradora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAseguradoraActionPerformed(evt);
+            }
+        });
+
+        jBAsistente.setBackground(new java.awt.Color(204, 204, 204));
+        jBAsistente.setForeground(new java.awt.Color(255, 255, 255));
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        jBAsistente.setBorder(null);
+        jBAsistente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistenteActionPerformed(evt);
+            }
+        });
+
+        jBFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        jBFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        jBFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/funcionario1.png"))); // NOI18N
+        jBFuncionario.setBorder(null);
+        jBFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFuncionarioActionPerformed(evt);
+            }
+        });
+
+        jBEstudiante.setBackground(new java.awt.Color(255, 255, 255));
+        jBEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        jBEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estudiante.png"))); // NOI18N
+        jBEstudiante.setBorder(null);
+        jBEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEstudianteActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel4.setText("estudiante");
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel5.setText("funcionario");
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel6.setText("asistente");
+
+        jBAsistente1.setBackground(new java.awt.Color(255, 255, 255));
+        jBAsistente1.setForeground(new java.awt.Color(255, 255, 255));
+        jBAsistente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asistente.png"))); // NOI18N
+        jBAsistente1.setBorder(null);
+        jBAsistente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAsistente1ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Registros");
 
@@ -151,20 +255,88 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMConsulta.setText("Consulta");
         jMenuBar1.add(jMConsulta);
 
-        jMenu6.setText("Ayuda");
-        jMenuBar1.add(jMenu6);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(55, 55, 55)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel4)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2)
+                                        .addGap(23, 23, 23))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 50, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel6))))
+                    .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -212,6 +384,47 @@ Funcionario miUsuario = new Funcionario();
         miUsuario.setVisible(true);
         miUsuario.obIDFunc(idFu);
     }//GEN-LAST:event_jMISoatActionPerformed
+
+    private void jBVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVehiculoActionPerformed
+        // TODO add your handling code here:
+        Vehiculo miVehiculo = new Vehiculo();
+        miVehiculo.setVisible(true);
+     
+    }//GEN-LAST:event_jBVehiculoActionPerformed
+
+    private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
+              Conductor miAsistente = new Conductor();
+        miAsistente.setVisible(true);
+    }//GEN-LAST:event_jBConductorActionPerformed
+
+    private void jBAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAseguradoraActionPerformed
+            Aseguradora miAsistente = new Aseguradora();
+        miAsistente.setVisible(true);
+    }//GEN-LAST:event_jBAseguradoraActionPerformed
+
+    private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
+dispose();        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jBAsistenteActionPerformed
+
+    private void jBFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFuncionarioActionPerformed
+                Funcionario miAsistente = new Funcionario();
+        miAsistente.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBFuncionarioActionPerformed
+
+    private void jBEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEstudianteActionPerformed
+        // TODO add your handling code here:
+        Estudiante miVentana = new Estudiante();
+        miVentana.setVisible(true);
+        miVentana.obtenerIdFunc(idFu);
+     
+    }//GEN-LAST:event_jBEstudianteActionPerformed
+
+    private void jBAsistente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistente1ActionPerformed
+        Asistente miAsistente = new Asistente();
+        miAsistente.setVisible(true);
+        miAsistente.obtenerIdFunc(idFu);    }//GEN-LAST:event_jBAsistente1ActionPerformed
 
 //    public void cargarCSV() {
 //        
@@ -291,7 +504,20 @@ public void cerrarLicencia(){
         miUsuario.setVisible(false);
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAseguradora;
+    private javax.swing.JButton jBAsistente;
+    private javax.swing.JButton jBAsistente1;
+    private javax.swing.JButton jBConductor;
+    private javax.swing.JButton jBEstudiante;
+    private javax.swing.JButton jBFuncionario;
+    private javax.swing.JButton jBVehiculo;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMConsulta;
     private javax.swing.JMenuItem jMIAseguradora;
     private javax.swing.JMenuItem jMIAsistente;
@@ -304,7 +530,6 @@ public void cerrarLicencia(){
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables

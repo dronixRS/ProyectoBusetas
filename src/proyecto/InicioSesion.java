@@ -67,6 +67,11 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jBCancelar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,6 +168,10 @@ if(jTFUsuario.getText().isEmpty()){
             
         }
     }//GEN-LAST:event_jBAceptarActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jBCancelarActionPerformed
 
     /**
      * @param args the command line arguments
