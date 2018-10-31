@@ -10,6 +10,7 @@ package proyecto;
 import controlador.AsistenteDAO;
 import controlador.Conexion;
 import controlador.EstudianteDAO;
+import java.awt.Color;
 import java.awt.Image;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -50,7 +51,8 @@ public class Asistente extends javax.swing.JFrame {
             "Archivo de Imagen", "jpg");
     
     public Asistente() {
-        initComponents();        
+        initComponents();
+        this.getContentPane().setBackground(Color.WHITE);        
         setLocationRelativeTo(null);
         bloquearCajas();
         

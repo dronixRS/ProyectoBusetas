@@ -10,6 +10,7 @@ package proyecto;
 import controlador.Conexion;
 import controlador.EstudianteDAO;
 import controlador.FuncionarioDAO;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 import modelo.EstudianteVO;
@@ -46,6 +47,8 @@ public class Estudiante  extends javax.swing.JFrame{
      */
     public Estudiante() {
         initComponents();
+        
+        this.getContentPane().setBackground(Color.WHITE);
         setLocationRelativeTo(null);
         bloquearCajas();
         
