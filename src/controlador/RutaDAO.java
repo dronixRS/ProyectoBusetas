@@ -42,7 +42,7 @@ public class RutaDAO {
        iD= new ArrayList<>();
         try {
             pstmt=conexion.prepareStatement(
-            "select codigo_ruta from ryta");
+            "select codigo_ruta from ruta");
             
             
             resultado=pstmt.executeQuery();

@@ -37,7 +37,8 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
     ConductorVO transFuncionario;
     public MenuPrincipal() {
         initComponents();
-        
+                getContentPane().setBackground(Color.white);
+
     }
 
     /**
@@ -58,7 +59,7 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jBConductor = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jBAseguradora = new javax.swing.JButton();
+        jBSoat = new javax.swing.JButton();
         jBAsistente = new javax.swing.JButton();
         jBFuncionario = new javax.swing.JButton();
         jBEstudiante = new javax.swing.JButton();
@@ -66,6 +67,14 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jBAsistente1 = new javax.swing.JButton();
+        jBRuta = new javax.swing.JButton();
+        jBAseguradora = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jBTecnomecanica = new javax.swing.JButton();
+        jBLista = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMIFuncionario = new javax.swing.JMenuItem();
@@ -76,7 +85,9 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMIVehiculo = new javax.swing.JMenuItem();
         jMISoat = new javax.swing.JMenuItem();
         jMRuta = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jMConsulta = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
 
@@ -97,7 +108,7 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -128,21 +139,21 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jLabel2.setText("conductor");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        jLabel3.setText("aseguradora");
+        jLabel3.setText("soat");
 
-        jBAseguradora.setBackground(new java.awt.Color(255, 255, 255));
-        jBAseguradora.setForeground(new java.awt.Color(255, 255, 255));
-        jBAseguradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aseguradora.png"))); // NOI18N
-        jBAseguradora.setBorder(null);
-        jBAseguradora.addActionListener(new java.awt.event.ActionListener() {
+        jBSoat.setBackground(new java.awt.Color(255, 255, 255));
+        jBSoat.setForeground(new java.awt.Color(255, 255, 255));
+        jBSoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/soat.png"))); // NOI18N
+        jBSoat.setBorder(null);
+        jBSoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAseguradoraActionPerformed(evt);
+                jBSoatActionPerformed(evt);
             }
         });
 
-        jBAsistente.setBackground(new java.awt.Color(204, 204, 204));
+        jBAsistente.setBackground(new java.awt.Color(255, 255, 255));
         jBAsistente.setForeground(new java.awt.Color(255, 255, 255));
-        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        jBAsistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         jBAsistente.setBorder(null);
         jBAsistente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +199,58 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
                 jBAsistente1ActionPerformed(evt);
             }
         });
+
+        jBRuta.setBackground(new java.awt.Color(255, 255, 255));
+        jBRuta.setForeground(new java.awt.Color(255, 255, 255));
+        jBRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ruta.png"))); // NOI18N
+        jBRuta.setBorder(null);
+        jBRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRutaActionPerformed(evt);
+            }
+        });
+
+        jBAseguradora.setBackground(new java.awt.Color(255, 255, 255));
+        jBAseguradora.setForeground(new java.awt.Color(255, 255, 255));
+        jBAseguradora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aseguradora.png"))); // NOI18N
+        jBAseguradora.setBorder(null);
+        jBAseguradora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAseguradoraActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel7.setText("aseguradora");
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel8.setText("ruta");
+
+        jBTecnomecanica.setBackground(new java.awt.Color(255, 255, 255));
+        jBTecnomecanica.setForeground(new java.awt.Color(255, 255, 255));
+        jBTecnomecanica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tecnomecanica.png"))); // NOI18N
+        jBTecnomecanica.setBorder(null);
+        jBTecnomecanica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTecnomecanicaActionPerformed(evt);
+            }
+        });
+
+        jBLista.setBackground(new java.awt.Color(255, 255, 255));
+        jBLista.setForeground(new java.awt.Color(255, 255, 255));
+        jBLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista.png"))); // NOI18N
+        jBLista.setBorder(null);
+        jBLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBListaActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel9.setText("tecnomecanica");
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel10.setText("lista estudiantes");
 
         jMenu1.setText("Registros");
 
@@ -250,9 +313,17 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
         jMenuBar1.add(jMenu1);
 
         jMRuta.setText("Ruta");
+
+        jMenu2.setText("ruta");
+        jMRuta.add(jMenu2);
+
         jMenuBar1.add(jMRuta);
 
         jMConsulta.setText("Consulta");
+
+        jMenu5.setText("Lista de estudiantes");
+        jMConsulta.add(jMenu5);
+
         jMenuBar1.add(jMConsulta);
 
         setJMenuBar(jMenuBar1);
@@ -264,79 +335,107 @@ private FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV","CSV 
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(188, 188, 188)
-                                .addComponent(jLabel5))
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jLabel4)))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2)
-                                        .addGap(23, 23, 23))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(50, 50, 50)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel6))
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 50, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)))
+                        .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(65, 65, 65)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel6)
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jBSoat, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBTecnomecanica, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBLista, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(80, 80, 80))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel10))
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBSoat, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAseguradora, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBAsistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBTecnomecanica, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel6))))
-                    .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)))
+                            .addComponent(jBEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jBLista, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBAsistente, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -387,20 +486,23 @@ Funcionario miUsuario = new Funcionario();
 
     private void jBVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVehiculoActionPerformed
         // TODO add your handling code here:
-        Vehiculo miVehiculo = new Vehiculo();
-        miVehiculo.setVisible(true);
+        Vehiculo miUsuario = new Vehiculo();
+        miUsuario.setVisible(true);
+        miUsuario.obIDFunc(idFu);
      
     }//GEN-LAST:event_jBVehiculoActionPerformed
 
     private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
-              Conductor miAsistente = new Conductor();
-        miAsistente.setVisible(true);
+              Conductor miConductor = new Conductor();
+              miConductor.setVisible(true);
+              miConductor.obIDFunc(idFu);
     }//GEN-LAST:event_jBConductorActionPerformed
 
-    private void jBAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAseguradoraActionPerformed
-            Aseguradora miAsistente = new Aseguradora();
-        miAsistente.setVisible(true);
-    }//GEN-LAST:event_jBAseguradoraActionPerformed
+    private void jBSoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSoatActionPerformed
+            SOAT miSoat = new SOAT();
+            miSoat.setVisible(true);
+            miSoat.obIDFunc(idFu);
+    }//GEN-LAST:event_jBSoatActionPerformed
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
 dispose();        // TODO add your handling code here:
@@ -425,6 +527,35 @@ dispose();        // TODO add your handling code here:
         Asistente miAsistente = new Asistente();
         miAsistente.setVisible(true);
         miAsistente.obtenerIdFunc(idFu);    }//GEN-LAST:event_jBAsistente1ActionPerformed
+
+    private void jBRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRutaActionPerformed
+        // TODO add your handling code here:
+        IngresoRutas miRuta = new IngresoRutas();
+        miRuta.setVisible(true);
+        //miRuta.ontenerIdFunc(idFu);
+    }//GEN-LAST:event_jBRutaActionPerformed
+
+    private void jBAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAseguradoraActionPerformed
+        
+        Aseguradora miAseguradora = new Aseguradora();
+        miAseguradora.setVisible(true);
+        miAseguradora.obIDFunc(idFu);
+        
+    }//GEN-LAST:event_jBAseguradoraActionPerformed
+
+    private void jBTecnomecanicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTecnomecanicaActionPerformed
+        Tecnomecanica miTecnomecanica = new Tecnomecanica();
+        miTecnomecanica.setVisible(true);
+        miTecnomecanica.obIDFunc(idFu);
+   
+    }//GEN-LAST:event_jBTecnomecanicaActionPerformed
+
+    private void jBListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListaActionPerformed
+    
+        ListaEstudiantes miLista = new ListaEstudiantes();
+        miLista.setVisible(true);
+        
+    }//GEN-LAST:event_jBListaActionPerformed
 
 //    public void cargarCSV() {
 //        
@@ -487,6 +618,7 @@ dispose();        // TODO add your handling code here:
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -510,14 +642,22 @@ public void cerrarLicencia(){
     private javax.swing.JButton jBConductor;
     private javax.swing.JButton jBEstudiante;
     private javax.swing.JButton jBFuncionario;
+    private javax.swing.JButton jBLista;
+    private javax.swing.JButton jBRuta;
+    private javax.swing.JButton jBSoat;
+    private javax.swing.JButton jBTecnomecanica;
     private javax.swing.JButton jBVehiculo;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMConsulta;
     private javax.swing.JMenuItem jMIAseguradora;
     private javax.swing.JMenuItem jMIAsistente;
@@ -528,8 +668,10 @@ public void cerrarLicencia(){
     private javax.swing.JMenuItem jMIVehiculo;
     private javax.swing.JMenu jMRuta;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     // End of variables declaration//GEN-END:variables

@@ -174,7 +174,8 @@ private Connection conexion;
         jTFUsuario = new javax.swing.JTextField();
         jTFClave = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Funcionario");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingreso Funcionario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
 

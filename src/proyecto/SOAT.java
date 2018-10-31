@@ -150,7 +150,7 @@ public void cargarTablaInicio(){
                      aseg=Integer.parseInt(asegurador.get(j));
                  }
              }
-             
+                
             transFuncionario = new SOATVO(codigo,aseg,dateDB, dateDB2,rutaFotoSoat,id_func, estado);
             datosFuncionario.add(transFuncionario);
             
@@ -190,8 +190,11 @@ public void cargarTablaInicio(){
         dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         jBVer = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("SOAT");
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingreso SOAT", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -209,35 +212,45 @@ public void cargarTablaInicio(){
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Fecha Vigente:");
 
+        jBNuevo.setBackground(new java.awt.Color(255, 255, 255));
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
+        jBNuevo.setBorder(null);
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
             }
         });
 
+        jBGuardar.setBackground(new java.awt.Color(255, 255, 255));
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
+        jBGuardar.setBorder(null);
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
 
+        jBEditar.setBackground(new java.awt.Color(255, 255, 255));
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jBEditar.setBorder(null);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
             }
         });
 
+        jBBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        jBBuscar.setBorder(null);
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
 
+        jBEliminar.setBackground(new java.awt.Color(255, 255, 255));
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        jBEliminar.setBorder(null);
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -664,7 +677,7 @@ dispose();        // TODO add your handling code here:
             vigLin=vigLin1.getTime();
             fechaDC=formato.format(vigLin);
             String date = fechaDC;
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); // your template here
             java.util.Date dateStr;
              try {
                  dateStr = formatter.parse(date);
@@ -676,7 +689,7 @@ dispose();        // TODO add your handling code here:
             vigLin2=vigLin12.getTime();
             fechaDC2=formato.format(vigLin2);
             String date2 = fechaDC2;
-            SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+            SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy"); // your template here
             java.util.Date dateStr2;
              try {
                  dateStr2 = formatter.parse(date2);
@@ -750,7 +763,7 @@ dispose();        // TODO add your handling code here:
             return false;
         }else if (jCBAseguradora.getSelectedItem().equals("Seleccione Empresa De Soat")){
             JOptionPane.showMessageDialog(null,
-                    "Ingresar Identificación");
+                    "Ingresar Empresa Soat");
 
             return false;
         }else {
@@ -768,7 +781,7 @@ dispose();        // TODO add your handling code here:
             vigLin=vigLin1.getTime();
             fechaDC=formato.format(vigLin);
             String date = fechaDC;
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); // your template here
             java.util.Date dateStr;
              try {
                  dateStr = formatter.parse(date);
@@ -781,7 +794,7 @@ dispose();        // TODO add your handling code here:
             vigLin2=vigLin12.getTime();
             fechaDC2=formato.format(vigLin2);
             String date2 = fechaDC2;
-            SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+            SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy"); // your template here
             java.util.Date dateStr2;
              try {
                  dateStr2 = formatter.parse(date2);
@@ -800,11 +813,17 @@ dispose();        // TODO add your handling code here:
                  }
              }
              
+             
             transFuncionario = new SOATVO(codigo, aseg, dateDB, dateDB2,rutaFotoSoat , id_func, estado);
             datosFuncionario.add(transFuncionario);
 //            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
-            BDConductor.ingresarSOAT(transFuncionario);
-            return true;
+             if (BDConductor.ingresarSOAT(transFuncionario)==true) {
+                 return true;
+             }else{
+             return false;
+             }
+
+         
         } else {
             return false;
         }

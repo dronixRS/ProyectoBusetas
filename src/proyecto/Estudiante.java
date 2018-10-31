@@ -422,8 +422,11 @@ public class Estudiante  extends javax.swing.JFrame{
         jTFGradoEstudiante = new javax.swing.JTextField();
         jTFCiudadEstudiante = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Estudiante");
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingreso Estudiante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -444,35 +447,45 @@ public class Estudiante  extends javax.swing.JFrame{
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Apellidos:");
 
+        jBNuevo.setBackground(new java.awt.Color(255, 255, 255));
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
+        jBNuevo.setBorder(null);
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
             }
         });
 
+        jBGuardar.setBackground(new java.awt.Color(255, 255, 255));
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
+        jBGuardar.setBorder(null);
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
 
+        jBEditar.setBackground(new java.awt.Color(255, 255, 255));
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jBEditar.setBorder(null);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
             }
         });
 
+        jBBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        jBBuscar.setBorder(null);
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
 
+        jBEliminar.setBackground(new java.awt.Color(255, 255, 255));
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        jBEliminar.setBorder(null);
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -559,19 +572,18 @@ public class Estudiante  extends javax.swing.JFrame{
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTFDireccionAcudienteEstu, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTFMailAcudienteEstu)
-                                .addComponent(jTFNombreAcudienteEstu)
-                                .addComponent(jTFMailEstudiante)
-                                .addComponent(jTFCodigoEstudiante)
-                                .addComponent(jTFIdentificacionEstudiante)
-                                .addComponent(jTFNombreEstudiante)
-                                .addComponent(jTFApellidosEstudiante)
-                                .addComponent(jTFCelularEstudiante)
-                                .addComponent(jTFDireccionEstudiante)
-                                .addComponent(jTFGradoEstudiante)
-                                .addComponent(jTFCiudadEstudiante)
-                                .addComponent(jTFCelularAcudienteEstu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                            .addComponent(jTFMailAcudienteEstu, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFNombreAcudienteEstu, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFMailEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCodigoEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFIdentificacionEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFNombreEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFApellidosEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCelularEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFDireccionEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFGradoEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCiudadEstudiante, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCelularAcudienteEstu, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
                         .addGap(187, 187, 187)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()

@@ -68,26 +68,22 @@ public class SOATDAO {
         PreparedStatement pstmt;
         try {
             //codigo para el ingreso de datos en MySQL
-            pstmt = conexion.prepareStatement("insert into soat (codigo_soat,codigo_aseg_soat,fecha_soat"
-                    + ",fecha_vigencia_soat,ruta_foto_soat,id_func,estado_soat"
+            pstmt = conexion.prepareStatement("insert into soat (codigo_soat,codigo_aseg_soat,fecha_soat,fecha_vigencia_soat,ruta_foto_soat,id_func,estado_soat)"
                     +"values (?,?,?,?,?,?,?)");
        
         //asignar valores a los interrogantes
-        
-        pstmt.setString(1, funcionario.getCodigoSoat());
+      pstmt.setString(1, funcionario.getCodigoSoat());
         pstmt.setInt(2,funcionario.getAseguradora());
-        java.sql.Date sqlDate = new java.sql.Date(funcionario.getFechaSoat().getTime());
+         java.sql.Date sqlDate = new java.sql.Date(funcionario.getFechaSoat().getTime());
         pstmt.setDate(3,sqlDate);
-        java.sql.Date sqlDate2 = new java.sql.Date(funcionario.getFechaVigenciaSoat().getTime());
-        pstmt.setDate(4,sqlDate2);
-        pstmt.setString(5,funcionario.getRutaFoto());
+         java.sql.Date sqlDate2 = new java.sql.Date(funcionario.getFechaVigenciaSoat().getTime());
+        pstmt.setDate(4,sqlDate);
+         pstmt.setString(5,funcionario.getRutaFoto());
         pstmt.setString(6,funcionario.getId_func());
         pstmt.setBoolean(7,funcionario.isEstado());
-     
-
-        
-        pstmt.executeUpdate();
-
+         
+          pstmt.executeUpdate();
+    
         
          } catch (SQLException ex) {
              //guarda el error en una carpeta

@@ -113,10 +113,10 @@ private Connection conexion;
          cargarJCB();
     }
     public void cargarJCB(){
-         for (int i = 0; i < asistentes_id.size(); i=i+3) {
+         for (int i = 0; i < asistentes_id.size(); i=i+2) {
             jCBAsistente.addItem((asistentes_id.get(i+1)));
         }
-         for (int i = 0; i < conductores_id.size(); i=i+3) {
+         for (int i = 0; i < conductores_id.size(); i=i+2) {
             jCBConductor.addItem((conductores_id.get(i+1)));
         }
     }
@@ -214,7 +214,6 @@ private Connection conexion;
         jCBConductor = new javax.swing.JComboBox<>();
         jCBAsistente = new javax.swing.JComboBox<>();
         jCBMarca = new javax.swing.JComboBox<>();
-        jTFSOAT = new javax.swing.JTextField();
         jTFTecnomecanica = new javax.swing.JTextField();
         jBNuevo = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
@@ -230,9 +229,12 @@ private Connection conexion;
         jScrollPane1 = new javax.swing.JScrollPane();
         jTVeh = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
+        jTFSOAT = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingreso Vehiculo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -293,48 +295,49 @@ private Connection conexion;
         });
 
         jCBMarca.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jCBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones:", "Mazda", "Renault" }));
-
-        jTFSOAT.setEditable(false);
-        jTFSOAT.setText("123");
-        jTFSOAT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFSOATActionPerformed(evt);
-            }
-        });
+        jCBMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciones:", "Renault", "Chevrolet", "International" }));
 
         jTFTecnomecanica.setEditable(false);
-        jTFTecnomecanica.setText("123");
 
+        jBNuevo.setBackground(new java.awt.Color(255, 255, 255));
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
+        jBNuevo.setBorder(null);
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
             }
         });
 
+        jBGuardar.setBackground(new java.awt.Color(255, 255, 255));
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
+        jBGuardar.setBorder(null);
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
 
+        jBEditar.setBackground(new java.awt.Color(255, 255, 255));
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jBEditar.setBorder(null);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
             }
         });
 
+        jBBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        jBBuscar.setBorder(null);
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
 
+        jBEliminar.setBackground(new java.awt.Color(255, 255, 255));
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        jBEliminar.setBorder(null);
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -343,9 +346,19 @@ private Connection conexion;
 
         jBBuscarConduc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jBBuscarConduc.setText("Buscar");
+        jBBuscarConduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarConducActionPerformed(evt);
+            }
+        });
 
         jBBuscarAsis.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jBBuscarAsis.setText("Buscar");
+        jBBuscarAsis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarAsisActionPerformed(evt);
+            }
+        });
 
         jBCargarSoat.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jBCargarSoat.setText("Cargar SOAT");
@@ -391,6 +404,8 @@ private Connection conexion;
                 jButton11ActionPerformed(evt);
             }
         });
+
+        jTFSOAT.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -446,7 +461,7 @@ private Connection conexion;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTFTecnomecanica, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBCargarTecno))
+                                .addComponent(jBCargarTecno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -524,18 +539,19 @@ private Connection conexion;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
-                                    .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBCargarSoat)))
+                                    .addComponent(jBCargarSoat)
+                                    .addComponent(jTFSOAT, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBFoto)
                                 .addGap(234, 234, 234)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTFTecnomecanica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCargarTecno))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBCargarTecno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFTecnomecanica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -590,7 +606,7 @@ private Connection conexion;
             }
         }
         if(verr==false){
-           JOptionPane.showMessageDialog(null, "Codigo De Tecnomecanica Incorrecto");
+           JOptionPane.showMessageDialog(null, "Codigo De Soat Incorrecto");
         }
     }
     
@@ -599,7 +615,7 @@ private Connection conexion;
     private void jBCargarTecnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCargarTecnoActionPerformed
     String so;
         
-        so=JOptionPane.showInputDialog("Ingresar Codigo Soat:");
+        so=JOptionPane.showInputDialog("Ingresar Codigo Tecnomecanica:");
         
         buscarTecno(so);
 
@@ -681,14 +697,15 @@ try {
 
     private void jCBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBConductorActionPerformed
 
-        
 
-        
         
     }//GEN-LAST:event_jCBConductorActionPerformed
 
     private void jCBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAsistenteActionPerformed
 
+        
+        
+        
     }//GEN-LAST:event_jCBAsistenteActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -707,14 +724,55 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBTipoVActionPerformed
 
-    private void jTFSOATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFSOATActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFSOATActionPerformed
-
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-dispose();        // TODO add your handling code here:
+dispose();      
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jBBuscarConducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarConducActionPerformed
+       
+        String so;
+        
+        so=JOptionPane.showInputDialog("Ingresar Identificacion Conductor:");
+        buscarConductor(so);
+        
+    }//GEN-LAST:event_jBBuscarConducActionPerformed
+
+    private void jBBuscarAsisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarAsisActionPerformed
+       String so;
+        
+        so=JOptionPane.showInputDialog("Ingresar Identificacion Asistente:");
+        buscarAsistente(so);
+    }//GEN-LAST:event_jBBuscarAsisActionPerformed
+    public void buscarConductor(String so){
+     boolean verr=false;
+        ArrayList<String> soatt;
+        ConductorDAO soo= new ConductorDAO();
+        soatt= soo.buscarConductorID();
+        for (int i = 0; i < soatt.size(); i=i+1) {
+            if(so.equals(soatt.get(i))){
+                jCBConductor.setSelectedItem(soatt.get(i+1));
+                verr=true;
+            }
+        }
+        if(verr==false){
+           JOptionPane.showMessageDialog(null, "Identificacion Incorrecto");
+        }
+    }
+    public void buscarAsistente(String so){
+     boolean verr=false;
+        ArrayList<String> soatt;
+        AsistenteDAO soo= new AsistenteDAO();
+        soatt= soo.buscarConductorID();
+        for (int i = 0; i < soatt.size(); i=i+1) {
+            if(so.equals(soatt.get(i))){
+                jCBAsistente.setSelectedItem(soatt.get(i+1));
+                verr=true;
+            }
+        }
+        if(verr==false){
+           JOptionPane.showMessageDialog(null, "Identificacion Incorrecto");
+        }
+    }
     public void buscarUsuarioElm(String busUsu) {
              boolean verificar = false;
         if (datosFuncionario.isEmpty()) {
@@ -985,12 +1043,12 @@ dispose();        // TODO add your handling code here:
             estado=true;
             
            
-             for (int i = 0; i < asistentes_id.size(); i=i+3) {
+             for (int i = 0; i < asistentes_id.size(); i=i+2) {
                  if (asistente.equals(asistentes_id.get(i+1))) {
                      asis=(asistentes_id.get(i));
                  }
              }
-             for (int i = 0; i < conductores_id.size(); i=i+3) {
+             for (int i = 0; i < conductores_id.size(); i=i+2) {
                  if (conductor.equals(conductores_id.get(i+1))) {
                      cond=(conductores_id.get(i));
                  }
@@ -1063,8 +1121,10 @@ dispose();        // TODO add your handling code here:
         jBEditar.setEnabled(false);
         jBEliminar.setEnabled(false);
         jBBuscar.setEnabled(false);
-        
-        
+        jBBuscarConduc.setEnabled(true);   
+        jBBuscarAsis.setEnabled(true);
+        jBCargarSoat.setEnabled(true);
+        jBCargarTecno.setEnabled(true);
     }
   
       public void bloquearCajas(){
@@ -1085,7 +1145,10 @@ dispose();        // TODO add your handling code here:
         jBEditar.setEnabled(true);
         jBEliminar.setEnabled(true);
         jBBuscar.setEnabled(true);
-        
+        jBBuscarConduc.setEnabled(false);   
+        jBBuscarAsis.setEnabled(false);
+        jBCargarSoat.setEnabled(false);
+        jBCargarTecno.setEnabled(false);
     }
 
     /**
