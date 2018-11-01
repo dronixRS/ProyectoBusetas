@@ -422,6 +422,12 @@ public class IngresoRutas extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setText("Num. Paradas");
 
+        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCodigoKeyTyped(evt);
+            }
+        });
+
         jCBVehiculoPlaca.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jCBVehiculoPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecccionar Placa", "1" }));
 
@@ -738,6 +744,16 @@ dispose();    }//GEN-LAST:event_jButton11ActionPerformed
     private void jTFDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFDisponiblesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFDisponiblesActionPerformed
+
+    private void jTFCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCodigoKeyTyped
 
     /**
      * @param args the command line arguments

@@ -182,6 +182,12 @@ private Connection conexion;
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Identificacion:");
 
+        jTFIdent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFIdentKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Nombre:");
 
@@ -196,6 +202,12 @@ private Connection conexion;
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Celular:");
+
+        jTFCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCelularKeyTyped(evt);
+            }
+        });
 
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -448,6 +460,26 @@ private Connection conexion;
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTFIdentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIdentKeyTyped
+        char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }
+    }//GEN-LAST:event_jTFIdentKeyTyped
+
+    private void jTFCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCelularKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCelularKeyTyped
      
     public void buscarUsuarioElm(String busUsu) {
              boolean verificar = false;

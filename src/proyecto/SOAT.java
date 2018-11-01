@@ -200,6 +200,12 @@ public void cargarTablaInicio(){
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Codigo:");
 
+        jTfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTfCodigoKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Aseguradora:");
 
@@ -501,6 +507,16 @@ try {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfCodigoKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTfCodigoKeyTyped
      
     public void buscarUsuarioElm(String busUsu) {
              boolean verificar = false;

@@ -435,6 +435,12 @@ public class Estudiante  extends javax.swing.JFrame{
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Codigo:");
 
+        jTFCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCodigoEstudianteKeyTyped(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Identificacion:");
 
@@ -446,6 +452,12 @@ public class Estudiante  extends javax.swing.JFrame{
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setText("Celular:");
+
+        jTFCelularEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCelularEstudianteKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Apellidos:");
@@ -530,6 +542,12 @@ public class Estudiante  extends javax.swing.JFrame{
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setText("Celular Acudiente:");
+
+        jTFCelularAcudienteEstu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFCelularAcudienteEstuKeyTyped(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel13.setText("E-Mail Acudiente:");
@@ -765,6 +783,33 @@ public class Estudiante  extends javax.swing.JFrame{
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jTFCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoEstudianteKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }    }//GEN-LAST:event_jTFCodigoEstudianteKeyTyped
+
+    private void jTFCelularEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCelularEstudianteKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }    }//GEN-LAST:event_jTFCelularEstudianteKeyTyped
+
+    private void jTFCelularAcudienteEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCelularAcudienteEstuKeyTyped
+ char caracter = evt.getKeyChar();
+
+        if ((caracter < '0' || caracter > '9')
+                && (caracter != '\b'/*corresponde a Back_space*/)
+                && (caracter != '.')) {
+            evt.consume();//ignota el evento del teclado
+        }    }//GEN-LAST:event_jTFCelularAcudienteEstuKeyTyped
 
     public void buscarEstudianteEditar(String busEstu){
         boolean verificar=false;

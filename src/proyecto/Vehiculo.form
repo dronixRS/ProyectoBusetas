@@ -352,6 +352,9 @@
         <Component class="javax.swing.JTextField" name="jTFPlaca">
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNumero">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNumeroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFModelo">
         </Component>

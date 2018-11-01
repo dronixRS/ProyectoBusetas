@@ -226,6 +226,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCodigoEstudiante">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFCodigoEstudianteKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -266,6 +269,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCelularEstudiante">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFCelularEstudianteKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -429,6 +435,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCelularAcudienteEstu">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFCelularAcudienteEstuKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFMailAcudienteEstu">
         </Component>
