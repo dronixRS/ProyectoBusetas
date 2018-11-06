@@ -172,7 +172,7 @@ private Connection conexion;
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTFUsuario = new javax.swing.JTextField();
-        jTFClave = new javax.swing.JTextField();
+        jTFClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionario");
@@ -181,12 +181,6 @@ private Connection conexion;
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Identificacion:");
-
-        jTFIdent.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFIdentKeyTyped(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -202,12 +196,6 @@ private Connection conexion;
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Celular:");
-
-        jTFCelular.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTFCelularKeyTyped(evt);
-            }
-        });
 
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -295,8 +283,8 @@ private Connection conexion;
                             .addComponent(jLabel8))
                         .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTFClave, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(jTFUsuario)))
+                            .addComponent(jTFUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(jTFClave)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -317,6 +305,7 @@ private Connection conexion;
                             .addComponent(jTFNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                             .addComponent(jTFIdent)
                             .addComponent(jTFApellido))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -701,7 +690,7 @@ dispose();        // TODO add your handling code here:
         jTFCorreo.setEnabled(true);
         jTFDireccion.setEnabled(true);
         jTFUsuario.setEnabled(true);
-        jTFClave.setEnabled(true);
+        jTFClave.setEnabled(false);
         
         jBGuardar.setEnabled(true);
         jBNuevo.setEnabled(false);
@@ -802,7 +791,7 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFApellido;
     private javax.swing.JTextField jTFCelular;
-    private javax.swing.JTextField jTFClave;
+    private javax.swing.JPasswordField jTFClave;
     private javax.swing.JTextField jTFCorreo;
     private javax.swing.JTextField jTFDireccion;
     private javax.swing.JTextField jTFIdent;

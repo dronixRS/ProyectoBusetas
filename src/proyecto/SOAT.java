@@ -71,7 +71,7 @@ private Connection conexion;
         BDsoat=new SOATDAO();
          BDConductor=new SOATDAO();
          AseguradoraDAO aseguradoors= new AseguradoraDAO();
-        asegurador=aseguradoors.buscarConductor();
+        asegurador=aseguradoors.buscarAseguradora();
 
         
         datosFuncionario=new ArrayList<SOATVO>();

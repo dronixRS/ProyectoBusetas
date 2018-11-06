@@ -33,20 +33,39 @@ private Connection conexion;
     /**
      * Creates new form Aseguradora
      */
+    //crea las variables que van a almacenar los datos
     String  nombre;
     int codigo;
     boolean estado;
     Date vigLin;
     String id2;
-    ArrayList<AseguradoraVO> datosFuncionario;
+    
+    //se crea un arraylist con los datos almacenados en aseguradoravo 
+    ArrayList<AseguradoraVO> datosAseguradora;
+    
+    //arraylist para guardar los datos en la tabla
     ArrayList<String> datosInicio;
-    AseguradoraVO transFuncionario;
+    
+    //transAseguradora guarda los datos que manda aseguradoravo
+    AseguradoraVO transAseguradora;
+    
+    //variable que almacena el id del funcionario
     String id_func="";
+    
+    //se nombra la tabla 
     DefaultTableModel modelo;
+    
+    //k
     int nivel,posicionUsuario = -1;
+    
+    //constante para saber si esta guardando un archivo editado
     boolean guardarEditar=false;
-    AseguradoraDAO BDConductor;
-    ArrayList<String> datosFuncionarioTabla;
+    
+    //se encarga de recibir los datos para la base de datos
+    AseguradoraDAO BDAseguradora;
+    
+    //arraylist para guardar los datos en la tabla
+    ArrayList<String> datosAseguradoraTabla;
     
     public Aseguradora() {
         initComponents();
@@ -56,16 +75,17 @@ private Connection conexion;
         setLocationRelativeTo(null);
         bloquearCajas();
        
-        BDConductor=new AseguradoraDAO();
+        BDAseguradora=new AseguradoraDAO();
         
 
         
-        datosFuncionario=new ArrayList<AseguradoraVO>();
+        datosAseguradora=new ArrayList<AseguradoraVO>();
         datosInicio=new ArrayList<String>();
-        datosFuncionarioTabla=new ArrayList<String>();
-        datosFuncionarioTabla=BDConductor.buscarConductor();
-        datosInicio=BDConductor.buscarConductor();
+        datosAseguradoraTabla=new ArrayList<String>();
+        datosAseguradoraTabla=BDAseguradora.buscarAseguradora();
+        datosInicio=BDAseguradora.buscarAseguradora();
        
+        
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
@@ -73,7 +93,7 @@ private Connection conexion;
         this.jTAseg.setModel(modelo);
         this.jTAseg.getColumn(jTAseg.getColumnName(0)).setMaxWidth(100);
         this.jTAseg.getColumn(jTAseg.getColumnName(1)).setMaxWidth(200);
-         BDConductor=new AseguradoraDAO();
+         BDAseguradora=new AseguradoraDAO();
          cargarTablaInicio();
     }
 
@@ -288,24 +308,29 @@ private Connection conexion;
     }
     
   public void cargarTablaInicio(){
+      //ver nos sirve para saber si en la posicion que le vamos a pedir es igual a 1 o a 0
       String ver;
         
-        for (int i = 0; i < datosFuncionarioTabla.size(); i=i+3) {
-            ver=datosFuncionarioTabla.get(i+2);
+        for (int i = 0; i < datosAseguradoraTabla.size(); i=i+3) {
+            //captura el dato de la base de datos y lo compara para saber a que equivale
+            ver=datosAseguradoraTabla.get(i+2);
+            //la decision nos dice que si ver es igual a uno(1) cargue los datos que se encuentran en la base de datos
             if (ver.equals("1")) {
+                
+            //se cargan los datos a la tabla    
               String[] datos=new String[2];
-            datos[0]=datosFuncionarioTabla.get(i);
-            datos[1]=datosFuncionarioTabla.get(i+1);
+            datos[0]=datosAseguradoraTabla.get(i);
+            datos[1]=datosAseguradoraTabla.get(i+1);
             modelo.addRow(datos);  
             
-            codigo = Integer.parseInt(datosFuncionarioTabla.get(i));
-            nombre = datosFuncionarioTabla.get(i+1);
+            codigo = Integer.parseInt(datosAseguradoraTabla.get(i));
+            nombre = datosAseguradoraTabla.get(i+1);
            estado=true;
              
             
              
-            transFuncionario = new AseguradoraVO(codigo, nombre,id_func, estado);
-            datosFuncionario.add(transFuncionario);
+            transAseguradora = new AseguradoraVO(codigo, nombre,id_func, estado);
+            datosAseguradora.add(transAseguradora);
             
             }
             
@@ -328,6 +353,7 @@ public void activarCajas(){
         
     }
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        //esta decision se usa para saber si esta g¿ingresando como archivo nuevo o editado        
         if(guardarEditar==false){
 
             if (guardarDatos() == true) {
@@ -416,18 +442,18 @@ public void activarCajas(){
     }
      public void buscarUsuario(String busUsu) {
         boolean verificarUsu = false;
-        if (datosFuncionario.isEmpty()) {
+        if (datosAseguradora.isEmpty()) {
             JOptionPane.showMessageDialog(null, 
                     "No hay Usuarios Registrados");
         } else {
-            for (int i = 0; i < datosFuncionario.size(); i++) {
+            for (int i = 0; i < datosAseguradora.size(); i++) {
 
-                if ((datosFuncionario.get(i).getCodigo()+"").equals(busUsu)) {
+                if ((datosAseguradora.get(i).getCodigo()+"").equals(busUsu)) {
                     verificarUsu = true;
                     JOptionPane.showMessageDialog(null,
                             "Información de Usuario:\nCodigo: "
-                            +datosFuncionario.get(i).getCodigo()+"\nNombre: "
-                            +datosFuncionario.get(i).getNombre());        
+                            +datosAseguradora.get(i).getCodigo()+"\nNombre: "
+                            +datosAseguradora.get(i).getNombre());        
                            
                     
 
@@ -443,20 +469,22 @@ public void activarCajas(){
     }
        public void buscarUsuarioEditar(String busUsu) {
         boolean verificar = false;
-        if (datosFuncionario.isEmpty()) {
+        //compara el dato para saber si esta vacio
+        if (datosAseguradora.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
         } else {
-            for (int i = 0; i < datosFuncionario.size(); i++) {
-                
-                if ((datosFuncionario.get(i).getCodigo()+"").equals(busUsu)) {
+            for (int i = 0; i < datosAseguradora.size(); i++) {
+             //compara el data ingresado con el que hay en los datos
+                if ((datosAseguradora.get(i).getCodigo()+"").equals(busUsu)) {
                     posicionUsuario = i;
                     guardarEditar=true;
                     activarCajas();
                     
                     verificar = true;
-                    jTFCodigo.setText(""+datosFuncionario.get(i).getCodigo());
-                    id2=(datosFuncionario.get(i).getCodigo()+"");
-                    jTFNombre.setText(datosFuncionario.get(i).getNombre());
+                    //manda los datos a las cajas de texto
+                    jTFCodigo.setText(""+datosAseguradora.get(i).getCodigo());
+                    id2=(datosAseguradora.get(i).getCodigo()+"");
+                    jTFNombre.setText(datosAseguradora.get(i).getNombre());
                 }
             }
 
@@ -467,14 +495,18 @@ public void activarCajas(){
         }
     }
     public boolean guardarDatos(){
+          //valida los campos apartir del metodo validarCajas 
          if (validarCajas() == true) {
+        //captura los datos correspondientes a las cajas                 
             codigo = Integer.parseInt(jTFCodigo.getText());
             nombre = jTFNombre.getText();
             estado=true;
-            transFuncionario = new AseguradoraVO(codigo, nombre,id_func, estado);
-            datosFuncionario.add(transFuncionario);
-//            se envian los datos que se encuentran en funvionarioVO(transfuncionario) al metodo ingresarFuncionario que se encuentra en la clase FuncionarioDAO
-            BDConductor.ingresarConductor(transFuncionario);
+            transAseguradora = new AseguradoraVO(codigo, nombre,id_func, estado);
+            
+        //ingresa los datos capturados en trans ¿Estudiante a datosEstudiante           
+            datosAseguradora.add(transAseguradora);
+//            se envian los datos que se encuentran en aseguradoraVO(transAseguradora) al metodo ingresarFuncionario que se encuentra en la clase aseguradoraDAO
+            BDAseguradora.ingresarAseguradora(transAseguradora);
             return true;
         } else {
             return false;
@@ -483,27 +515,27 @@ public void activarCajas(){
     }
       public void buscarUsuarioElm(String busUsu) {
              boolean verificar = false;
-        if (datosFuncionario.isEmpty()) {
+        if (datosAseguradora.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
         } else {
             
-            for (int i = 0; i < datosFuncionario.size(); i++) {
+            for (int i = 0; i < datosAseguradora.size(); i++) {
 
-                if ((datosFuncionario.get(i).getCodigo()+"").equals(busUsu)) {  
+                if ((datosAseguradora.get(i).getCodigo()+"").equals(busUsu)) {  
                      posicionUsuario = i;
-                     id2=(datosFuncionario.get(i).getCodigo()+"");
+                     id2=(datosAseguradora.get(i).getCodigo()+"");
                      System.out.println(id2);
-                      BDConductor.eliminarConductor(id2);
-                    datosFuncionario.remove(posicionUsuario);
+                      BDAseguradora.eliminarAseguradora(id2);
+                    datosAseguradora.remove(posicionUsuario);
                     verificar = true;
                      for (int j= jTAseg.getRowCount(); j >=0; j--) {
             modelo.removeRow(i);    
             }
                      
-                    for (int j = 0; j < datosFuncionario.size(); j++) {
+                    for (int j = 0; j < datosAseguradora.size(); j++) {
                 String[] datos = new String[2];
-        datos[0] = (""+datosFuncionario.get(j).getCodigo());
-        datos[1] = datosFuncionario.get(j).getNombre();
+        datos[0] = (""+datosAseguradora.get(j).getCodigo());
+        datos[1] = datosAseguradora.get(j).getNombre();
         modelo.addRow(datos);
         
        }
@@ -525,22 +557,25 @@ public void activarCajas(){
        public boolean modificarDatos() {
         
         if (validarCajas() == true) {
+            //toma los datos de las cajas de texto            
             codigo = Integer.parseInt(jTFCodigo.getText());
             nombre = jTFNombre.getText();
             estado=true;
-            transFuncionario = new AseguradoraVO(codigo, nombre, id_func, estado);
+            transAseguradora = new AseguradoraVO(codigo, nombre, id_func, estado);
             
-            datosFuncionario.set(posicionUsuario,transFuncionario);
+            datosAseguradora.set(posicionUsuario,transAseguradora);
                        
-            BDConductor.editarConductor(transFuncionario,id2);
+            BDAseguradora.editarAseguradora(transAseguradora,id2);
+            //al capturar el dato lo quita de la tabla mientras edita
             for (int i = jTAseg.getRowCount()-1; i >=0; i--) {
             modelo.removeRow(i);    
             }
-                           
-            for (int i = 0; i < datosFuncionario.size(); i++) {
+              
+             //carga los datos a la tabla nuevamente
+            for (int i = 0; i < datosAseguradora.size(); i++) {
                 String[] datos = new String[2];
-        datos[0] = (datosFuncionario.get(i).getCodigo()+"");
-        datos[1] = datosFuncionario.get(i).getNombre();
+        datos[0] = (datosAseguradora.get(i).getCodigo()+"");
+        datos[1] = datosAseguradora.get(i).getNombre();
         modelo.addRow(datos);
             }
                   
@@ -568,6 +603,7 @@ public void activarCajas(){
         }
     }
        public void cargarTabla() {
+        //hace un array con capacidad de la cantidad de datos que se ingresan en la tabla            
         String[] datos = new String[2];
         datos[0] = codigo+"";
         datos[1] = nombre;

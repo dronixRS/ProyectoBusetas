@@ -68,7 +68,7 @@ public class AseguradoraDAO {
         
     }
         
-        public ArrayList<String> buscarConductor(){
+        public ArrayList<String> buscarAseguradora(){
          PreparedStatement pstm;
          ResultSet resultado;
          ArrayList<String> funcionario= new ArrayList<>();
@@ -97,7 +97,7 @@ public class AseguradoraDAO {
 	
             }
         
-public boolean ingresarConductor(AseguradoraVO funcionario) {
+public boolean ingresarAseguradora(AseguradoraVO funcionario) {
         
         PreparedStatement pstmt;
         try {
@@ -130,7 +130,7 @@ public boolean ingresarConductor(AseguradoraVO funcionario) {
 
    
     
-    public boolean editarConductor(AseguradoraVO funcionario, String idd) {
+    public boolean editarAseguradora(AseguradoraVO funcionario, String idd) {
         
          
         PreparedStatement pstmt;
@@ -160,7 +160,7 @@ public boolean ingresarConductor(AseguradoraVO funcionario) {
     
     }
     
-     public boolean eliminarConductor(String idd) {
+     public boolean eliminarAseguradora(String idd) {
         
          
         PreparedStatement pstmt;

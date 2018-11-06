@@ -27,20 +27,33 @@ public class Estudiante  extends javax.swing.JFrame{
     private Connection conexion;
     private Conexion conector;
     
+    //crea las variables que van a almacenar los datos
     String codigo,identificacion,nombre,apellido,celular,mail,direccion,grado,ciudad,nombreAcudiente,celularAcudiente,mailAcudiente,direccionAcudiente;
 
+    //variable que almacena el id del funcionario
     String id_func = "";
     String id2;
+    //variable para saber si el estudiante esta activado
     boolean estado;
+    
+    //se crea un arraylist con los datos almacenados en estudianteVO 
     ArrayList<EstudianteVO> datosEstudiante;
+    
+    //arraylist para guardar los datos en la tabla
     ArrayList<String> datosEstudiantesTabla;
     
+    //transEstudiante guarda los datos que manda estudiantes vo
     EstudianteVO transEstudiante;
     
+    //se nombra la tabla 
     DefaultTableModel modelo;
     
     int posicionEstudiante = -1;
+    
+    //se encarga de recibir los datos para la base de datos
     EstudianteDAO BDEstudiante;
+    
+    //constante para saber si esta guardando un archivo editado
     boolean guardarEditar=false;
     /**
      * Creates new form Estudiante
@@ -50,6 +63,7 @@ public class Estudiante  extends javax.swing.JFrame{
         
         this.getContentPane().setBackground(Color.WHITE);
         setLocationRelativeTo(null);
+        //llama al metodo bloquear cajas 
         bloquearCajas();
         
         BDEstudiante= new EstudianteDAO();
@@ -85,6 +99,7 @@ public class Estudiante  extends javax.swing.JFrame{
 
     }
     
+    //metodo para extraer el id del funcionario de el menu principal
     public void obtenerIdFunc(String id){
         id_func=id;
     }
@@ -118,14 +133,19 @@ public class Estudiante  extends javax.swing.JFrame{
     
     public void cargarTablaInicio(){
         
+        //ver nos sirve para saber si en la posicion que le vamos a pedir es igual a 1 o a 0
         String ver;
+        
         
         for (int i = 0; i < datosEstudiantesTabla.size();i=i+14) {
             
+            //captura el dato de la base de datos y lo compara para saber a que equivale
             ver=datosEstudiantesTabla.get(i+13);
             
+            //la decision nos dice que si ver es igual a uno(1) cargue los datos que se encuentran en la base de datos
             if(ver.equals("1")){
-                
+            
+            //se cargan los datos a la tabla
             String[] datos=new String[13];
             datos[0]=datosEstudiantesTabla.get(i);
             datos[1]=datosEstudiantesTabla.get(i+1);
@@ -159,6 +179,7 @@ public class Estudiante  extends javax.swing.JFrame{
         direccionAcudiente= datosEstudiantesTabla.get(i+12);
         
         estado=true;
+        
         
         transEstudiante = new EstudianteVO(codigo,identificacion,nombre,apellido,celular,mail,direccion,grado,ciudad,nombreAcudiente,celularAcudiente,mailAcudiente,direccionAcudiente,id_func,estado);
         datosEstudiante.add(transEstudiante); 
@@ -196,7 +217,9 @@ public class Estudiante  extends javax.swing.JFrame{
     
     public boolean guardarDatos() {
     
+        //valida los campos apartir del metodo validarCajas 
         if(validarCajas()==true){
+        //captura los datos correspondientes a las cajas    
         codigo=jTFCodigoEstudiante.getText();
         identificacion= jTFIdentificacionEstudiante.getText();
         nombre= jTFNombreEstudiante.getText();
@@ -211,11 +234,12 @@ public class Estudiante  extends javax.swing.JFrame{
         mailAcudiente= jTFMailAcudienteEstu.getText();
         direccionAcudiente= jTFDireccionAcudienteEstu.getText();
         
-       //obtenerIdFunc(id_func);
         estado=true;
         
         transEstudiante = new EstudianteVO(codigo,identificacion,nombre,apellido,celular,mail,direccion,grado,ciudad,nombreAcudiente,celularAcudiente,mailAcudiente,direccionAcudiente,id_func,estado);
+        //ingresa los datos capturados en trans ¿Estudiante a datosEstudiante
         datosEstudiante.add(transEstudiante); 
+//       se envian los datos que se encuentran en estudianteVO(transEstudiante) al metodo ingresarEstudiante que se encuentra en la clase estudianteDAO
         BDEstudiante.ingresarEstudiante(transEstudiante);
         return true;
         } else{
@@ -225,6 +249,7 @@ public class Estudiante  extends javax.swing.JFrame{
     
     public void cargarTabla(){
     
+        //hace un array con capacidad de la cantidad de datos que se ingresan en la tabla 
         String[] datos = new String[13];
         
         datos[0] = codigo;
@@ -326,7 +351,7 @@ public class Estudiante  extends javax.swing.JFrame{
     public boolean modificarDatos(){
 
         if(validarCajas()==true){
-        
+            //toma los datos de las cajas de texto
             codigo=jTFCodigoEstudiante.getText();
             identificacion=jTFIdentificacionEstudiante.getText();
             nombre=jTFNombreEstudiante.getText();
@@ -345,11 +370,12 @@ public class Estudiante  extends javax.swing.JFrame{
             datosEstudiante.set(posicionEstudiante, transEstudiante);
              BDEstudiante.modificarEstudiante(transEstudiante,id2);
 
-            
+            //al capturar el dato lo quita de la tabla mientras edita
             for (int i = jTEstudiantes.getRowCount()-1; i >= 0; i--) {
                 modelo.removeRow(i);
             }
             
+            //carga los datos a la tabla nuevamente
             for (int i = 0; i < datosEstudiante.size(); i++) {
                 
                 String[] datos = new String[13];
@@ -727,7 +753,7 @@ public class Estudiante  extends javax.swing.JFrame{
     
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 
-               
+        //esta decision se usa para saber si esta g¿ingresando como archivo nuevo o editado        
         if (guardarEditar==false){
             
         if(guardarDatos()==true){
@@ -814,17 +840,20 @@ public class Estudiante  extends javax.swing.JFrame{
     public void buscarEstudianteEditar(String busEstu){
         boolean verificar=false;
     
+        //compara el dato para saber si esta vacio
         if(datosEstudiante.isEmpty()){
         JOptionPane.showMessageDialog(null, "no hay estudiantes registrados");
         }else{
         
+            
             for (int i = 0; i < datosEstudiante.size(); i++) {
-                
+                //compara el data ingresado con el que hay en los datos
                 if(datosEstudiante.get(i).getCodigo().equals(busEstu)){
                 
                 posicionEstudiante=i; 
                 verificar=true;
-                    
+                
+                //manda los datos a las cajas de texto
                 jTFCodigoEstudiante.setText(datosEstudiante.get(i).getCodigo());
                 id2=datosEstudiante.get(i).getCodigo();
                 jTFIdentificacionEstudiante.setText(datosEstudiante.get(i).getIdentificacion());
@@ -912,8 +941,7 @@ public class Estudiante  extends javax.swing.JFrame{
                 if (datosEstudiante.get(i).getCodigo().equals(busCodi)) {  
                      posicionEstudiante = i;
                      id2=datosEstudiante.get(i).getCodigo();
-                     //System.out.println(id2);
-                      BDEstudiante.eliminarEstudiante(id2);
+                     BDEstudiante.eliminarEstudiante(id2);
                     datosEstudiante.remove(posicionEstudiante);
                     verificar = true;
                      for (int j= jTEstudiantes.getRowCount(); j >=0; j--) {

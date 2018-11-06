@@ -41,7 +41,8 @@ private Connection conexion;
     /**
      * Creates new form Conductor
      */
-  
+    
+      //crea las variables que van a almacenar los datos
     String placa, model, tipo_vehiculo, empresa, marca, conductor, asistente, soat, tecnoM, ruta_foto;
     int numero, capacidad;
     boolean estado;
@@ -49,18 +50,23 @@ private Connection conexion;
      private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
     ImageIcon img;
+    //se crea un arraylist con los datos almacenados en vehiculoVO 
     ArrayList<VehiculoVO> datosFuncionario;
     ArrayList<String> datosInicio;
     VehiculoVO transFuncionario;
     boolean bImg=false;
+    //variable que almacena el id del funcionario
     String id_func="";
-//    ArrayList<FuncionarioVO> datosFuncionario;
-//    FuncionarioVO transFuncionario;
+
     DefaultTableModel modelo;
     int nivel,posicionUsuario = -1;
+    
     boolean guardarEditar=false;
+    //se encarga de conectar los datos para la base de datos
     VehiculoDAO BDConductor;
+    //arraylist para guardar los datos en la tabla
     ArrayList<String> datosFuncionarioTabla;
+    //arraylist para la lista de conductores y asistentes
     ArrayList<String> conductores_id;
     ArrayList<String> asistentes_id;
     String fecha;
@@ -120,14 +126,19 @@ private Connection conexion;
             jCBConductor.addItem((conductores_id.get(i+1)));
         }
     }
+    //metodo para extraer el id del funcionario de el menu principal
     public void obIDFunc(String id){
         id_func=id;
     }
     
     public void cargarTablaInicio(){
+        
+        //ver nos sirve para saber si en la posicion que le vamos a pedir es igual a 1 o a 0        
       String ver;
         
         for (int i = 0; i < datosFuncionarioTabla.size(); i=i+14) {
+            
+            //captura el dato de la base de datos y lo compara para saber a que equivale
             ver=datosFuncionarioTabla.get(i+13);
             if (ver.equals("1")) {
                
@@ -142,7 +153,8 @@ private Connection conexion;
                      asis=(asistentes_id.get(k+1));
                  }
              }
-            
+                        
+            //se cargan los datos a la tabla
               String[] datos=new String[11];
             datos[0]=datosFuncionarioTabla.get(i);
             datos[1]=datosFuncionarioTabla.get(i+1);
@@ -270,9 +282,26 @@ private Connection conexion;
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel11.setText("Tecnomecanica:");
 
+        jTFPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFPlacaActionPerformed(evt);
+            }
+        });
+
+        jTFNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNumeroActionPerformed(evt);
+            }
+        });
         jTFNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTFNumeroKeyTyped(evt);
+            }
+        });
+
+        jTFModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFModeloActionPerformed(evt);
             }
         });
 
@@ -759,6 +788,18 @@ dispose();
             evt.consume();//ignota el evento del teclado
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTFNumeroKeyTyped
+
+    private void jTFPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPlacaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFPlacaActionPerformed
+
+    private void jTFModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFModeloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFModeloActionPerformed
+
+    private void jTFNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNumeroActionPerformed
     public void buscarConductor(String so){
      boolean verr=false;
         ArrayList<String> soatt;
@@ -909,11 +950,15 @@ dispose();
         bImg=false;
         Licencia linc=new Licencia();
         boolean verificar = false;
+        
+        //compara el dato para saber si esta vacio
         if (datosFuncionario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay Usuarios Registrados");
         } else {
+            
             for (int i = 0; i < datosFuncionario.size(); i++) {
                 
+                //compara el data ingresado con el que hay en los datos
                 if (datosFuncionario.get(i).getPlaca().equals(busUsu)) {
                     posicionUsuario = i;
                     guardarEditar=true;
@@ -921,6 +966,7 @@ dispose();
                     
                     
                     verificar = true;
+                    //manda los datos a las cajas de texto
                     jTFPlaca.setText(datosFuncionario.get(i).getPlaca());
                     id2=datosFuncionario.get(i).getPlaca();
                     jTFNumero.setText(Integer.toString(datosFuncionario.get(i).getNumero()));
@@ -963,6 +1009,7 @@ dispose();
             soat=jTFSOAT.getText();
             estado=true;
              
+            //¿?
              for (int i = 0; i < asistentes_id.size(); i=i+3) {
                  if (asistente.equals(asistentes_id.get(i+1))) {
                      asis=(asistentes_id.get(i));
@@ -1058,7 +1105,7 @@ dispose();
             soat=jTFSOAT.getText();
             estado=true;
             
-           
+            // ¿?
              for (int i = 0; i < asistentes_id.size(); i=i+2) {
                  if (asistente.equals(asistentes_id.get(i+1))) {
                      asis=(asistentes_id.get(i));
